@@ -337,6 +337,9 @@ local v16 = {
     Status = v15:AddTab({
         Title = "Máy Chủ"
     }),
+    Auto = v15:AddTab({
+        Title = "Tự Động"
+    }),
     Stats = v15:AddTab({
         Title = "Chỉ Số"
     }),
@@ -9320,8 +9323,49 @@ spawn(function()
         end
     end
 end);
+local v178 = v16.Sea:AddToggle("Tudong", {
+    Title = "Tự Động Mua Full Võ",
+    Description = "",
+    Default = false
+});
+v178:OnChanged(function(v415)
+    _G.Tudong = v415;
+end);
+spawn(function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
+end);
+local v180 = v16.Sea:AddToggle("ToggleBringMob", {
+    Title = "Gom Quái v2",
+    Description = "",
+    Default = false
+})
+v180:OnChanged(function(v)
+    _G.BringMob = v
+end)
+
+spawn(function()
+    while wait() do
+        if _G.BringMob then
+            for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                    v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -15, 0)
+                end
+            end
+        end
+    end
+end)
 v14:Notify({
-    Title = "Banana Hub",
+    Title = "Tool Hub",
     Content = "Tải Xong",
     Duration = 10
 });

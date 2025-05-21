@@ -9323,7 +9323,7 @@ spawn(function()
         end
     end
 end);
-local v178 = v16.Sea:AddToggle("Tudong", {
+local v178 = v16.Auto:AddToggle("Tudong", {
     Title = "Tự Động Mua Full Võ",
     Description = "",
     Default = false
@@ -9344,7 +9344,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
 end);
-local v180 = v16.Sea:AddToggle("ToggleBringMob", {
+local v180 = v16.Auto:AddToggle("ToggleBringMob", {
     Title = "Gom Quái v2",
     Description = "",
     Default = false

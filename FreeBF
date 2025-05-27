@@ -27,11 +27,14 @@ local v16 = {
     Setting = v15:AddTab({
         Title = "Cài Đặt"
     }),
+    Draco = v15:AddTab({
+        Title = "Tộc Rồng"
+    }),
     Status = v15:AddTab({
         Title = "Máy Chủ"
     }),
     Auto = v15:AddTab({
-        Title = "Tự Động"
+        Title = "Gom Quái"
     }),
     Stats = v15:AddTab({
         Title = "Chỉ Số"

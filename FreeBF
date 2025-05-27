@@ -45,11 +45,8 @@ local v16 = {
     Visual = v15:AddTab({
         Title = "Giả"
     }),
-    Fruit = v15:AddTab({
-        Title = "Trái"
-    }),
     Raid = v15:AddTab({
-        Title = "Tập Kích"
+        Title = "Tập Kích và Trái"
     }),
     Race = v15:AddTab({
         Title = "Tộc"
@@ -6945,7 +6942,7 @@ _G.SelectFruit = "Dragon-Dragon";
 _G.PermanentFruit = "Dragon-Dragon";
 _G.AutoBuyFruitSniper = false;
 _G.AutoSwitchPermanentFruit = false;
-local v123 = v16.Fruit:AddDropdown("DropdownFruit", {
+local v123 = v16.Raid:AddDropdown("DropdownFruit", {
     Title = "Chọn Trái",
     Description = "",
     Values = Table_DevilFruitSniper,
@@ -6956,7 +6953,7 @@ v123:SetValue(_G.SelectFruit);
 v123:OnChanged(function(v337)
     _G.SelectFruit = v337;
 end);
-local v111 = v16.Fruit:AddToggle("ToggleFruit", {
+local v111 = v16.Raid:AddToggle("ToggleFruit", {
     Title = "Mua Trái Chọn",
     Description = "",
     Default = false
@@ -6972,7 +6969,7 @@ v111:OnChanged(function(v338)
     end
 end);
 v17.ToggleFruit:SetValue(false);
-local v124 = v16.Fruit:AddDropdown("DropdownPermanentFruit", {
+local v124 = v16.Raid:AddDropdown("DropdownPermanentFruit", {
     Title = "Chọn Trái Vĩnh Viễn",
     Description = "",
     Values = Table_DevilFruitSniper,
@@ -6983,7 +6980,7 @@ v124:SetValue(_G.PermanentFruit);
 v124:OnChanged(function(v339)
     _G.PermanentFruit = v339;
 end);
-local v125 = v16.Fruit:AddToggle("TogglePermanentFruit", {
+local v125 = v16.Raid:AddToggle("TogglePermanentFruit", {
     Title = "Đổi Trái Vĩnh Viễn",
     Description = "",
     Default = false
@@ -7002,7 +6999,7 @@ v125:OnChanged(function(v340)
     end
 end);
 v17.TogglePermanentFruit:SetValue(false);
-local v126 = v16.Fruit:AddToggle("ToggleStore", {
+local v126 = v16.Raid:AddToggle("ToggleStore", {
     Title = "Lưu Trái",
     Description = "",
     Default = false
@@ -7124,7 +7121,7 @@ spawn(function()
         wait();
     end
 end);
-local v127 = v16.Fruit:AddToggle("ToggleRandomFruit", {
+local v127 = v16.Raid:AddToggle("ToggleRandomFruit", {
     Title = "Random Trái",
     Description = "",
     Default = false
@@ -7142,7 +7139,7 @@ spawn(function()
         end
     end);
 end);
-local v128 = v16.Fruit:AddToggle("ToggleCollectTP", {
+local v128 = v16.Raid:AddToggle("ToggleCollectTP", {
     Title = "Bay Đến Trái",
     Description = "",
     Default = false
@@ -7162,7 +7159,7 @@ spawn(function()
         end
     end
 end);
-local v129 = v16.Fruit:AddToggle("ToggleCollect", {
+local v129 = v16.Raid:AddToggle("ToggleCollect", {
     Title = "Dịch Chuyển Đến Trái",
     Description = "",
     Default = false
@@ -7182,8 +7179,8 @@ spawn(function()
         end
     end
 end);
-local v56 = v16.Fruit:AddSection("Định Vị");
-local v130 = v16.Fruit:AddToggle("ToggleEspPlayer", {
+local v56 = v16.Raid:AddSection("Định Vị");
+local v130 = v16.Raid:AddToggle("ToggleEspPlayer", {
     Title = "Người Chơi",
     Description = "",
     Default = false
@@ -7193,7 +7190,7 @@ v130:OnChanged(function(v345)
     UpdatePlayerChams();
 end);
 v17.ToggleEspPlayer:SetValue(false);
-local v131 = v16.Fruit:AddToggle("ToggleEspFruit", {
+local v131 = v16.Raid:AddToggle("ToggleEspFruit", {
     Title = "Trái",
     Description = "",
     Default = false
@@ -7206,7 +7203,7 @@ v131:OnChanged(function(v346)
     end
 end);
 v17.ToggleEspFruit:SetValue(false);
-local v132 = v16.Fruit:AddToggle("ToggleEspIsland", {
+local v132 = v16.Raid:AddToggle("ToggleEspIsland", {
     Title = "Đảo",
     Description = "",
     Default = false
@@ -7219,7 +7216,7 @@ v132:OnChanged(function(v347)
     end
 end);
 v17.ToggleEspIsland:SetValue(false);
-local v133 = v16.Fruit:AddToggle("ToggleEspFlower", {
+local v133 = v16.Raid:AddToggle("ToggleEspFlower", {
     Title = "Hoa",
     Description = "",
     Default = false
@@ -7248,7 +7245,7 @@ spawn(function()
         end
     end
 end);
-local v134 = v16.Fruit:AddToggle("ToggleEspRealFruit", {
+local v134 = v16.Raid:AddToggle("ToggleEspRealFruit", {
     Title = "Trái Dứa Khớm Táo",
     Description = "",
     Default = false
@@ -7347,7 +7344,7 @@ function UpdateRealFruitEsp()
         end
     end
 end
-local v135 = v16.Fruit:AddToggle("ToggleIslandMirageEsp", {
+local v135 = v16.Raid:AddToggle("ToggleIslandMirageEsp", {
     Title = "Đảo Bí Ẩn",
     Description = "",
     Default = false

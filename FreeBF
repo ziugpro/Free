@@ -9364,44 +9364,43 @@ spawn(function()
         end
     end
 end)
-local bringmobv3 = v16.Auto:AddToggle("BringMobV3", {
+local bringmobv3 = v16.Auto:AddToggle("bringmobv3", {
     Title = "Gom Quái ( Đã Sửa Lỗi )",
     Description = "",
     Default = true
-})
-bringmobv3:OnChanged(function(state)
-    _G.BringMobV3 = state
-end)
-v17.BringMobV3:SetValue(true)
+});
+bringmobv3:OnChanged(function(v277)
+    _G.bringmobv3 = v277;
+end);
+bringmobv3:SetValue(true)
 
 spawn(function()
-    while task.wait(0.1) do
-        if not _G.BringMobV3 or not MonFarm or not FarmPos then continue end
+    while wait() do
         pcall(function()
-            for _, mob in pairs(workspace.Enemies:GetChildren()) do
-                if mob.Name == MonFarm and mob:FindFirstChild("Humanoid") and mob:FindFirstChild("HumanoidRootPart") then
-                    local h = mob.Humanoid
-                    local hrp = mob.HumanoidRootPart
-                    if h.Health > 0 then
-                        hrp.CFrame = FarmPos + Vector3.new(math.random(-5,5), 0, math.random(-5,5))
-                        hrp.Size = Vector3.new(60, 60, 60)
-                        hrp.Transparency = 1
-                        hrp.CanCollide = false
-                        h.WalkSpeed = 0
-                        h.JumpPower = 0
-                        if h:FindFirstChild("Animator") then
-                            h.Animator:Destroy()
+            for _, v744 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                if (_G.bringmobv3 and bringmobv3) then
+                    if ((v744.Name == MonFarm) and v744:FindFirstChild("Humanoid") and (v744.Humanoid.Health > 0)) then
+                        if v744:FindFirstChild("HumanoidRootPart") then
+                            v744.Head.CanCollide = false;
+                            v744.HumanoidRootPart.CanCollide = false;
+                            v744.HumanoidRootPart.Size = Vector3.new(80, 80, 80);
+                            v744.HumanoidRootPart.CFrame = FarmPos + Vector3.new(math.random(-5,5), 0, math.random(-5,5));
+                            v744.Humanoid.JumpPower = 0;
+                            v744.Humanoid.WalkSpeed = 0;
+                            v744.HumanoidRootPart.Transparency = 1;
+                            if v744.Humanoid:FindFirstChild("Animator") then
+                                v744.Humanoid.Animator:Destroy();
+                            end
+                            v744.Humanoid:ChangeState(11);
+                            v744.Humanoid:ChangeState(14);
+                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge);
                         end
-                        mob.Head.CanCollide = false
-                        h:ChangeState(11)
-                        h:ChangeState(14)
-                        sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
                     end
                 end
             end
-        end)
+        end);
     end
-end)
+end);
 v14:Notify({
     Title = "Tool Hub",
     Content = "Tải Xong",

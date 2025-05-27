@@ -93,7 +93,7 @@ local v7 = CreateObject("ImageLabel", {
     Name = "UserImage",
     Parent = v6,
     BackgroundTransparency = 1,
-    Image = "rbxthumb://type=Asset&id=135702171440429&w=420&h=420",
+    Image = "",
     Position = UDim2.new(0, 15, 0, 10),
     Size = UDim2.new(0, 50, 0, 50)
 });
@@ -315,8 +315,8 @@ local v15 = v14:CreateWindow({
     TabWidth = 130,
     Theme = "Dark",
     Acrylic = false,
-    Size = UDim2.fromOffset(500, 370),
-    MinimizeKey = Enum.KeyCode.End
+    Size = UDim2.fromOffset(500, 360),
+    MinimizeKey = Enum.KeyCode.LeftControl
 });
 local v16 = {
     Home = v15:AddTab({

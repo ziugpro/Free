@@ -9358,10 +9358,48 @@ spawn(function()
         if _G.BringMob then
             for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                 if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                    v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -15, 0)
+                    v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
                 end
             end
         end
+    end
+end)
+local bringmobv3 = v16.Auto:AddToggle("BringMobV3", {
+    Title = "Gom Quái ( Đã Sửa Lỗi )",
+    Description = "",
+    Default = true
+})
+bringmobv3:OnChanged(function(state)
+    _G.BringMobV3 = state
+end)
+v17.BringMobV3:SetValue(true)
+
+spawn(function()
+    while task.wait(0.1) do
+        if not _G.BringMobV3 or not MonFarm or not FarmPos then continue end
+        pcall(function()
+            for _, mob in pairs(workspace.Enemies:GetChildren()) do
+                if mob.Name == MonFarm and mob:FindFirstChild("Humanoid") and mob:FindFirstChild("HumanoidRootPart") then
+                    local h = mob.Humanoid
+                    local hrp = mob.HumanoidRootPart
+                    if h.Health > 0 then
+                        hrp.CFrame = FarmPos + Vector3.new(math.random(-5,5), 0, math.random(-5,5))
+                        hrp.Size = Vector3.new(60, 60, 60)
+                        hrp.Transparency = 1
+                        hrp.CanCollide = false
+                        h.WalkSpeed = 0
+                        h.JumpPower = 0
+                        if h:FindFirstChild("Animator") then
+                            h.Animator:Destroy()
+                        end
+                        mob.Head.CanCollide = false
+                        h:ChangeState(11)
+                        h:ChangeState(14)
+                        sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                    end
+                end
+            end
+        end)
     end
 end)
 v14:Notify({

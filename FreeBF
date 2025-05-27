@@ -1,4 +1,6 @@
 local v14 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local v15 = v14:CreateWindow({
     Title = "Tool Hub",
     SubTitle = "By Ziugpro",
@@ -14,6 +16,9 @@ local v16 = {
     }),
     Webhook = v15:AddTab({
         Title = "Webhook"
+    }),
+    Settings = v15:AddTab({
+        Title = "Cài Đặt Giao Diện"
     }),
     Main = v15:AddTab({
         Title = "Cày"
@@ -9156,3 +9161,15 @@ task.spawn(function()
         end)
     end
 end)
+
+
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+SaveManager:LoadAutoloadConfig()

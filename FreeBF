@@ -17,6 +17,9 @@ local v16 = {
     Webhook = v15:AddTab({
         Title = "Webhook"
     }),
+    Draco = v15:AddTab({
+        Title = "Tộc Rồng"
+    }),
     Main = v15:AddTab({
         Title = "Cày"
     }),
@@ -9119,6 +9122,7 @@ local ngu = v16.Webhook:AddToggle("ngu", {
     Description = "",
     Default = true
 });
+local Draco = Tabs.Draco:AddSection("Đang Cập Nhật Vui Lòng Đợi")
 game.StarterGui:SetCore("SendNotification", {
     Title = "Tool Hub",
     Text = "Success Loading",

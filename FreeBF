@@ -7397,6 +7397,7 @@ function UpdateIslandMirageEsp()
         end);
     end
 end
+local Main = v16.Raid:AddSection("Tập Kích")
 local v136 = {
     "Flame",
     "Ice",

@@ -1,0 +1,202 @@
+getgenv().Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
+getgenv().ToggleUI = "LeftControl"
+
+task.spawn(function()
+    if not getgenv().LoadedMobileUI then
+        getgenv().LoadedMobileUI = true
+        local OpenUI = Instance.new("ScreenGui")
+        local ImageButton = Instance.new("ImageButton")
+        local UICorner = Instance.new("UICorner")
+        local UIStroke = Instance.new("UIStroke")
+
+        OpenUI.Name = "OpenUI"
+        OpenUI.Parent = game:GetService("CoreGui")
+        OpenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+        ImageButton.Parent = OpenUI
+        ImageButton.BackgroundColor3 = Color3.fromRGB(105, 105, 105)
+        ImageButton.BackgroundTransparency = 0.8
+        ImageButton.Position = UDim2.new(0, 5, 0, 5)
+        ImageButton.Size = UDim2.new(0, 55, 0, 55)
+        ImageButton.Image = getgenv().Image
+        ImageButton.Draggable = false
+        ImageButton.Transparency = 1
+
+        UICorner.CornerRadius = UDim.new(0.5, 0)
+        UICorner.Parent = ImageButton
+
+        UIStroke.Color = Color3.fromRGB(144, 238, 144)
+        UIStroke.Thickness = 2
+        UIStroke.Transparency = 0.1
+        UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+        UIStroke.Parent = ImageButton
+
+        ImageButton.MouseButton1Click:Connect(function()
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, getgenv().ToggleUI, false, game)
+        end)
+    end
+end)
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "KaitunUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.DisplayOrder = 999999
+ScreenGui.Parent = PlayerGui
+
+local FullBlack = Instance.new("Frame")
+FullBlack.Size = UDim2.new(1, 0, 1, 36)
+FullBlack.Position = UDim2.new(0, 0, -0.03, 0)
+FullBlack.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+FullBlack.BorderSizePixel = 0
+FullBlack.ZIndex = 1
+FullBlack.Parent = ScreenGui
+
+local Image = Instance.new("ImageLabel")
+Image.Size = UDim2.new(0, 100, 0, 100)
+Image.Position = UDim2.new(0.5, -50, 0.5, -90)
+Image.BackgroundTransparency = 1
+Image.Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
+Image.ZIndex = 2
+Image.Parent = ScreenGui
+
+local CenterText = Instance.new("TextLabel")
+CenterText.AnchorPoint = Vector2.new(0.5, 0.5)
+CenterText.Position = UDim2.new(0.5, 0, 0.5, 40)
+CenterText.Size = UDim2.new(0, 600, 0, 50)
+CenterText.BackgroundTransparency = 1
+CenterText.Text = "Tool Hub - Ziugpro"
+CenterText.Font = Enum.Font.GothamBold
+CenterText.TextSize = 28
+CenterText.TextColor3 = Color3.fromRGB(255, 255, 255)
+CenterText.ZIndex = 2
+CenterText.Parent = ScreenGui
+
+
+local Version = Instance.new("TextLabel")
+Version.AnchorPoint = Vector2.new(0.5, 0.5)
+Version.Position = UDim2.new(0.5, 0, 0.5, 80)
+Version.Size = UDim2.new(0, 600, 0, 50)
+Version.BackgroundTransparency = 1
+Version.Text = "Script Verison : Kaitun Free"
+Version.Font = Enum.Font.GothamBold
+Version.TextSize = 28
+Version.TextColor3 = Color3.fromRGB(255, 255, 255)
+Version.ZIndex = 2
+Version.Parent = ScreenGui
+
+local UIS = game:GetService("UserInputService")
+local guiVisible = true
+
+UIS.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.KeyCode == Enum.KeyCode.LeftControl then
+		guiVisible = not guiVisible
+		ScreenGui.Enabled = guiVisible
+	end
+end)
+
+local config = getgenv().config or {}
+
+if config["AutoCollect"] ~= false then
+    task.spawn(function()
+        while true do
+            task.wait(0.1)
+            local plot = getOwnedPlot()
+            local farm = plot and plot:FindFirstChild("Important"):FindFirstChild("Plants_Physical")
+            if farm then
+                for _, prompt in ipairs(farm:GetDescendants()) do
+                    if prompt:IsA("ProximityPrompt") then
+                        local playerRoot = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+                        if playerRoot then
+                            local dist = (playerRoot.Position - prompt.Parent.Position).Magnitude
+                            if dist <= 20 then
+                                prompt.Exclusivity = Enum.ProximityPromptExclusivity.AlwaysShow
+                                prompt.MaxActivationDistance = 100
+                                prompt.RequiresLineOfSight = false
+                                prompt.Enabled = true
+                                fireproximityprompt(prompt, 1, true)
+                            elseif autoWalkToPlant then
+                                local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
+                                if humanoid then
+                                    humanoid:MoveTo(prompt.Parent.Position + Vector3.new(0, 5, 0))
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+
+if config["AutoSell"] ~= false then
+    task.spawn(function()
+        while true do
+            task.wait(0.1)
+            local shopStand = workspace.NPCS["Sell Stands"]["Shop Stand"]
+            if shopStand then
+                local character = player.Character or player.CharacterAdded:Wait()
+                local root = character:WaitForChild("HumanoidRootPart")
+                task.wait(0.5)
+                root.CFrame = shopStand.CFrame * CFrame.new(0, 0, 3)
+                task.wait(0.5)
+                game:GetService("ReplicatedStorage"):WaitForChild("GameEvents"):WaitForChild("Sell_Inventory"):FireServer()
+                task.wait(0.5)
+                root.CFrame = CFrame.new(27.028656, 4.61500359, -81.4960098, 0.801240802, -3.3885601e-09, -0.598342061, -3.22234683e-10, 1, -6.09475403e-09, 0.598342061, 5.07617193e-09, 0.801240802)
+            end
+        end
+    end)
+end
+
+if config["AutoBuySeeds"] ~= false then
+    task.spawn(function()
+        while true do
+            task.wait(0.1)
+            local shopUI = player:WaitForChild("PlayerGui"):WaitForChild("Seed_Shop")
+            local scroll = shopUI.Frame.ScrollingFrame
+            for _, item in pairs(scroll:GetChildren()) do
+                local stock = item:FindFirstChild("Stock")
+                if stock and stock:IsA("NumberValue") and stock.Value > 0 then
+                    ReplicatedStorage:WaitForChild("GameEvents"):WaitForChild("BuySeedStock"):FireServer(item.Name)
+                end
+            end
+        end
+    end)
+end
+
+if config["AutoPlant"] ~= false then
+    task.spawn(function()
+        while true do
+            task.wait(0.1)
+            local character = player.Character or player.CharacterAdded:Wait()
+            local root = character:WaitForChild("HumanoidRootPart")
+            local pos = Vector3.new(math.floor(root.Position.X), 0.1, math.floor(root.Position.Z))
+            local tool, seedType = findSeedTool()
+            if tool and seedType then
+                if tool.Parent == backpack then
+                    character:WaitForChild("Humanoid"):EquipTool(tool)
+                    repeat task.wait() until tool.Parent == character
+                end
+                remote:FireServer(pos, seedType)
+            end
+        end
+    end)
+end
+
+if config["WalkSpeed"] ~= false then
+    task.spawn(function()
+        while true do
+            task.wait(0.1)
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoid = character:WaitForChild("Humanoid")
+            if humanoid then
+                humanoid.WalkSpeed = walkSpeed
+            end
+        end
+    end)
+end

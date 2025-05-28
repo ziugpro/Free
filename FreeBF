@@ -17,9 +17,6 @@ local v16 = {
     Webhook = v15:AddTab({
         Title = "Webhook"
     }),
-    Settings = v15:AddTab({
-        Title = "Cài Đặt Giao Diện"
-    }),
     Main = v15:AddTab({
         Title = "Cày"
     }),
@@ -31,9 +28,6 @@ local v16 = {
     }),
     Setting = v15:AddTab({
         Title = "Cài Đặt"
-    }),
-    Draco = v15:AddTab({
-        Title = "Tộc Rồng"
     }),
     Status = v15:AddTab({
         Title = "Máy Chủ"

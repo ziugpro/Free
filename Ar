@@ -1,5 +1,5 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = "The Lost One",
+    Title = "Tool Hub",
     Text = "Success Loading",
     Icon = "rbxthumb://type=Asset&id=93885131404023&w=420&h=420",
     Duration = 5,
@@ -40,7 +40,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Window = Fluent:CreateWindow({
-    Title = "The Lost One [ Premium ]",
+    Title = "Tool Hub [ Free ]",
     SubTitle = "By Ziugpro",
     TabWidth = 130,
     Size = UDim2.fromOffset(505, 355),

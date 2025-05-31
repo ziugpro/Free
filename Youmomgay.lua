@@ -1,10 +1,17 @@
---[ Stop Skiding 🤣🤣🖕🏼🖕🏼 ]]--
-if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Free/refs/heads/main/BloxFruit"))()
-elseif game.PlaceId == 70876832253163 or game.PlaceId == 116495829188952 then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/DeadRails/refs/heads/main/DeadRails.lua"))()
-elseif game.GameId == 7074860883 then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Free/refs/heads/main/AriseCrossover"))()
-else
-print("Your Mom Gay")
+--[[ Stop Skiding 🤣🤣🖕🏼🖕🏼 ]]--
+local scripts = {
+  --[[ Blox Fruit ]]--
+    [2753915549] = "https://raw.githubusercontent.com/ziugpro/Free/refs/heads/main/BloxFruit",
+    [4442272183] = "https://raw.githubusercontent.com/ziugpro/Free/refs/heads/main/BloxFruit",
+    [7449423635] = "https://raw.githubusercontent.com/ziugpro/Free/refs/heads/main/BloxFruit",
+    [70876832253163]  = "https://raw.githubusercontent.com/ziugpro/DeadRails/refs/heads/main/DeadRails.lua",
+    [116495829188952] = "https://raw.githubusercontent.com/ziugpro/DeadRails/refs/heads/main/DeadRails.lua",
+}
+local Game = {
+--[[ Arise Crossover ]]--
+    [7074860883] = "https://raw.githubusercontent.com/ziugpro/Free/refs/heads/main/AriseCrossover",
+}
+local url = scripts[game.PlaceId] or Game[game.GameId]
+if url then
+    loadstring(game:HttpGetAsync(url))()
 end

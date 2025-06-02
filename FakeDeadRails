@@ -310,7 +310,7 @@ folder1:AddButton({
 folder1:AddSlider({
 	text = "Speed Players",
 	min = 50,
-	max = 10000,
+	max = 10000000000000000000,
 	dual = true,
 	type = "slider",
 	callback = function(v)

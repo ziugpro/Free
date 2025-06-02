@@ -410,7 +410,7 @@ end
 if config["AutoComlect"] ~= false then
 	task.spawn(function()
 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 0)
-task.wait()
+task.wait(1)
 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, false, game, 0)
 task.wait()
 		end

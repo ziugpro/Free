@@ -236,4 +236,190 @@ folder1:AddButton({
         rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
 end
 })
+folder:AddButton({
+	text = "Farm Bond",
+	flag = "button",
+	callback = function()
+        getgenv().Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
+getgenv().ToggleUI = "LeftControl"
+
+task.spawn(function()
+    if not getgenv().LoadedMobileUI then
+        getgenv().LoadedMobileUI = true
+        local OpenUI = Instance.new("ScreenGui")
+        local ImageButton = Instance.new("ImageButton")
+        local UICorner = Instance.new("UICorner")
+        local UIStroke = Instance.new("UIStroke")
+
+        OpenUI.Name = "OpenUI"
+        OpenUI.Parent = game:GetService("CoreGui")
+        OpenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+        ImageButton.Parent = OpenUI
+        ImageButton.BackgroundColor3 = Color3.fromRGB(105, 105, 105)
+        ImageButton.BackgroundTransparency = 0.8
+        ImageButton.Position = UDim2.new(0, 5, 0, 5)
+        ImageButton.Size = UDim2.new(0, 55, 0, 55)
+        ImageButton.Image = getgenv().Image
+        ImageButton.Draggable = false
+        ImageButton.Transparency = 1
+
+        UICorner.CornerRadius = UDim.new(0.5, 0)
+        UICorner.Parent = ImageButton
+
+        UIStroke.Color = Color3.fromRGB(144, 238, 144)
+        UIStroke.Thickness = 2
+        UIStroke.Transparency = 0.1
+        UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+        UIStroke.Parent = ImageButton
+
+        ImageButton.MouseButton1Click:Connect(function()
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, getgenv().ToggleUI, false, game)
+        end)
+    end
+end)
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "KaitunUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.DisplayOrder = 999999
+ScreenGui.Parent = PlayerGui
+
+local FullBlack = Instance.new("Frame")
+FullBlack.Size = UDim2.new(1, 0, 1, 36)
+FullBlack.Position = UDim2.new(0, 0, -0.03, 0)
+FullBlack.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+FullBlack.BorderSizePixel = 0
+FullBlack.ZIndex = 1
+FullBlack.Parent = ScreenGui
+
+local Image = Instance.new("ImageLabel")
+Image.Size = UDim2.new(0, 100, 0, 100)
+Image.Position = UDim2.new(0.5, -50, 0.5, -90)
+Image.BackgroundTransparency = 1
+Image.Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
+Image.ZIndex = 2
+Image.Parent = ScreenGui
+
+local CenterText = Instance.new("TextLabel")
+CenterText.AnchorPoint = Vector2.new(0.5, 0.5)
+CenterText.Position = UDim2.new(0.5, 0, 0.5, 40)
+CenterText.Size = UDim2.new(0, 600, 0, 50)
+CenterText.BackgroundTransparency = 1
+CenterText.Text = "Tool Hub - Ziugpro"
+CenterText.Font = Enum.Font.GothamBold
+CenterText.TextSize = 28
+CenterText.TextColor3 = Color3.fromRGB(255, 255, 255)
+CenterText.ZIndex = 2
+CenterText.Parent = ScreenGui
+
+
+local Version = Instance.new("TextLabel")
+Version.AnchorPoint = Vector2.new(0.5, 0.5)
+Version.Position = UDim2.new(0.5, 0, 0.5, 80)
+Version.Size = UDim2.new(0, 600, 0, 50)
+Version.BackgroundTransparency = 1
+Version.Text = "Script Verison : Auto Bond"
+Version.Font = Enum.Font.GothamBold
+Version.TextSize = 28
+Version.TextColor3 = Color3.fromRGB(255, 255, 255)
+Version.ZIndex = 2
+Version.Parent = ScreenGui
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local Quanglar = Instance.new("TextLabel")
+Quanglar.AnchorPoint = Vector2.new(0.5, 0.5)
+Quanglar.Position = UDim2.new(0.5, 0, 0.5, 120)
+Quanglar.Size = UDim2.new(0, 600, 0, 50)
+Quanglar.BackgroundTransparency = 1
+Quanglar.Text = "Quangtar : 0"
+Quanglar.Font = Enum.Font.GothamBold
+Quanglar.TextSize = 28
+Quanglar.TextColor3 = Color3.fromRGB(255, 255, 255)
+Quanglar.ZIndex = 2
+Quanglar.Parent = ScreenGui
+
+task.spawn(function()
+	while true do
+		local stats = player:FindFirstChild("leaderstats")
+		if stats and stats:FindFirstChild("Quanglar") then
+			Quanglar.Text = "Quanglar : " .. stats.Quanglar.Value
+		end
+		task.wait(0.5)
+	end
+end)
+
+local UIS = game:GetService("UserInputService")
+local guiVisible = true
+
+UIS.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.KeyCode == Enum.KeyCode.LeftControl then
+		guiVisible = not guiVisible
+		ScreenGui.Enabled = guiVisible
+	end
+end)
+
+local config = getgenv().config or {}
+
+if config["AutoFarmBond"] ~= false then
+	task.spawn(function()
+		while true do
+			task.wait(1)
+			local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local root = character:WaitForChild("HumanoidRootPart")
+local original = root.Position
+
+local function getTools()
+    local list = {}
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj:IsA("Tool") and obj.Name:lower() == "quanglar" then
+            table.insert(list, obj)
+        end
+    end
+    return list
+end
+
+local function teleportTo(pos)
+    root.CFrame = CFrame.new(pos)
+end
+
+local tools = getTools()
+for _, tool in ipairs(tools) do
+    if tool:FindFirstChild("Handle") then
+        teleportTo(tool.Handle.Position + Vector3.new(0, 3, 0))
+        task.wait(0.5)
+    end
+end
+
+task.wait(1)
+player:LoadCharacter()
+		end
+	end)
+end
+
+if config["AutoComlect"] ~= false then
+	task.spawn(function()
+		while true do
+			task.wait()
+			local VirtualInputManager = game:GetService("VirtualInputManager")
+
+while true do
+	VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+	VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+end
+		end
+	end)
+end
+end
+})
 library:Init() -- Đéo được xoá

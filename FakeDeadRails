@@ -216,14 +216,11 @@ folder:AddButton({
 	text = "Teleport To Village",
 	flag = "button",
 	callback = function()
-    Title = "Teleport To Shotgun",
-    Description = "",
-    Callback = function()
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
         local rootPart = character:WaitForChild("HumanoidRootPart")
 
-        local destination = Vector3.new(100, 10, 200)
+        local destination = Vector3.new(-426.7721862792969, 18.086393356323242, -2968.00439453125)
         rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
 end
 })

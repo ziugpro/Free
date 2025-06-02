@@ -409,14 +409,10 @@ end
 
 if config["AutoComlect"] ~= false then
 	task.spawn(function()
-		while true do
-			task.wait()
-			local VirtualInputManager = game:GetService("VirtualInputManager")
-
-while true do
-	VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
-	VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
-end
+game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 0)
+task.wait()
+game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, false, game, 0)
+task.wait()
 		end
 	end)
 end

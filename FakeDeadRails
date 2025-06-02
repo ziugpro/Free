@@ -419,17 +419,6 @@ if config["AutoComlect"] ~= false then
 	end)
 end
 
-if config["AutoDie"] ~= false then
-    task.spawn(function()
-        while true do
-            task.wait(35)
-            local player = game.Players.LocalPlayer
-            if player.Character and player.Character:FindFirstChild("Humanoid") then
-                player.Character.Humanoid.Health = 0
-            end
-        end
-    end)
-end
 	end
 })
 library:Init() -- Đéo được xoá

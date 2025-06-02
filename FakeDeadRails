@@ -2,6 +2,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/liebe
 local tab = library:CreateWindow("Dead Rails Fake")
 local tab1 = library:CreateWindow("Players")
 local folder = tab:AddFolder("Main")
+local bring = tab:AddFolder("Bring Item")
 local folder1 = tab1:AddFolder("Main")
 folder:AddButton({
 	text = "Teleport To Gold",
@@ -218,6 +219,44 @@ end
 task.wait(1)
 teleportTo(original)
 end
+})
+bring:AddButton({
+	text = "Bring Bond",
+	flag = "button",
+	callback = function()
+		local player = game.Players.LocalPlayer
+		if not player.Character then return end
+		local root = player.Character:FindFirstChild("HumanoidRootPart")
+		if not root then return end
+
+		for _, tool in pairs(workspace:GetDescendants()) do
+			if tool:IsA("Tool") and string.lower(tool.Name):find("quanglar") then
+				local handle = tool:FindFirstChild("Handle")
+				if handle then
+					handle.CFrame = root.CFrame * CFrame.new(0, 0, -5)
+				end
+			end
+		end
+	end
+})
+bring:AddButton({
+	text = "Bring Gold",
+	flag = "button",
+	callback = function()
+		local player = game.Players.LocalPlayer
+		if not player.Character then return end
+		local root = player.Character:FindFirstChild("HumanoidRootPart")
+		if not root then return end
+
+		for _, tool in pairs(workspace:GetDescendants()) do
+			if tool:IsA("Tool") and string.lower(tool.Name):find("gold bar") then
+				local handle = tool:FindFirstChild("Handle")
+				if handle then
+					handle.CFrame = root.CFrame * CFrame.new(0, 0, -5)
+				end
+			end
+		end
+	end
 })
 folder:AddLabel({
 	text =  "YouTube: Ziugpro",

@@ -212,15 +212,27 @@ folder1:AddSlider({
 		end
 	end
 })
-folder:AddButton({
-	text = "Teleport To Village",
+folder1:AddButton({
+	text = "Teleport To Teslalab",
 	flag = "button",
 	callback = function()
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
         local rootPart = character:WaitForChild("HumanoidRootPart")
 
-        local destination = Vector3.new(-426.7721862792969, 18.086393356323242, -2968.00439453125)
+        local destination = Vector3.new(-3537.87939453125, 19.36308479309082, -22530.5078125)
+        rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
+end
+})
+folder1:AddButton({
+	text = "Teleport To Fort",
+	flag = "button",
+	callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local destination = Vector3.new(-2604.04052734375, 18.462738037109375, -15082.0966796875)
         rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
 end
 })

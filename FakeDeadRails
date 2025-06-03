@@ -4,6 +4,7 @@ local tab1 = library:CreateWindow("Players")
 local folder = tab:AddFolder("Main")
 local bring = tab:AddFolder("Bring Item")
 local folder1 = tab1:AddFolder("Main")
+local fo = tab:AddFolder("Misc")
 folder:AddButton({
 	text = "Teleport To Gold",
 	flag = "button",
@@ -347,7 +348,7 @@ folder1:AddButton({
         rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
 end
 })
-folder1:AddButton({
+fo:AddButton({
     text = "Kill All Players",
     flag = "button",
     callback = function()
@@ -360,7 +361,7 @@ folder1:AddButton({
         end
     end
 })
-folder1:AddButton({
+fo:AddButton({
     text = "Bring All Players",
     flag = "button",
     callback = function()
@@ -376,7 +377,7 @@ folder1:AddButton({
         end
     end
 })
-folder1:AddButton({
+fo:AddButton({
     text = "Teleport Kill All Then Return",
     flag = "button",
     callback = function()

@@ -347,4 +347,54 @@ folder1:AddButton({
         rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
 end
 })
+folder1:AddButton({
+    text = "Kill All Players",
+    flag = "button",
+    callback = function()
+        local Players = game:GetService("Players")
+        local localPlayer = Players.LocalPlayer
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("Humanoid") then
+                player.Character.Humanoid.Health = 0
+            end
+        end
+    end
+})
+folder1:AddButton({
+    text = "Bring All Players",
+    flag = "button",
+    callback = function()
+        local Players = game:GetService("Players")
+        local localPlayer = Players.LocalPlayer
+        local char = localPlayer.Character
+        if not char or not char:FindFirstChild("HumanoidRootPart") then return end
+        local hrp = char.HumanoidRootPart
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                player.Character.HumanoidRootPart.CFrame = hrp.CFrame + Vector3.new(0, 0, 5) -- Kéo họ đến gần bạn, cách 5 stud về phía trước
+            end
+        end
+    end
+})
+folder1:AddButton({
+    text = "Teleport Kill All Then Return",
+    flag = "button",
+    callback = function()
+        local Players = game:GetService("Players")
+        local localPlayer = Players.LocalPlayer
+        local char = localPlayer.Character
+        if not char or not char:FindFirstChild("HumanoidRootPart") then return end
+        local hrp = char.HumanoidRootPart
+        local originalCFrame = hrp.CFrame
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Humanoid") then
+                hrp.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 3, 0)
+                wait(0.2)
+                player.Character.Humanoid.Health = 0
+                wait(0.5)
+            end
+        end
+        hrp.CFrame = originalCFrame
+    end
+})
 library:Init() -- Đéo được xoá

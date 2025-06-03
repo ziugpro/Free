@@ -1,14 +1,14 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/liebertsx/Tora-Library/main/src/librarynew",true))()
-local tab = library:CreateWindow("Dead Rails Fake")
-local tab1 = library:CreateWindow("Players")
-local folder = tab:AddFolder("Main")
-local bring = tab:AddFolder("Bring Item")
-local folder1 = tab1:AddFolder("Main")
-local fo = tab:AddFolder("Misc")
-folder:AddButton({
-	text = "Teleport To Gold",
-	flag = "button",
-	callback = function()
+local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/ziugpro/Ui/refs/heads/main/UiLib", true))()
+local Library = DarkraiX:Window("Tool Hub","","rbxthumb://type=Asset&id=76608011467652&w=420&h=420",Enum.KeyCode.RightControl);
+Info = Library:Tab("⚙️ Info")
+Tab1 = Library:Tab("⚙️ Main")
+
+
+Info:Seperator("Info Script:")
+Info:Label("Verison Script : Dead Rails Fake")
+
+Tab1:Seperator("Teleport")
+Tab1:Button("Teleport To Gold",function()
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -38,13 +38,9 @@ for _, tool in ipairs(tools) do
 end
 
 task.wait(1)
-teleportTo(original)
-end
-})
-folder:AddButton({
-	text = "Teleport To Silver",
-	flag = "button",
-	callback = function()
+teleportTo(original)  
+end)
+Tab1:Button("Teleport To Silver",function()
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -54,7 +50,7 @@ local original = root.Position
 local function getTools()
     local list = {}
     for _, obj in ipairs(workspace:GetDescendants()) do
-        if obj:IsA("Tool") and obj.Name:lower() == "Silver bar" then
+        if obj:IsA("Tool") and obj.Name:lower() == "silver bar" then
             table.insert(list, obj)
         end
     end
@@ -74,49 +70,9 @@ for _, tool in ipairs(tools) do
 end
 
 task.wait(1)
-teleportTo(original)
-end
-})
-folder:AddButton({
-	text = "Teleport To Bond",
-	flag = "button",
-	callback = function()
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local root = character:WaitForChild("HumanoidRootPart")
-local original = root.Position
-
-local function getTools()
-    local list = {}
-    for _, obj in ipairs(workspace:GetDescendants()) do
-        if obj:IsA("Tool") and obj.Name:lower() == "quanglar" then
-            table.insert(list, obj)
-        end
-    end
-    return list
-end
-
-local function teleportTo(pos)
-    root.CFrame = CFrame.new(pos)
-end
-
-local tools = getTools()
-for _, tool in ipairs(tools) do
-    if tool:FindFirstChild("Handle") then
-        teleportTo(tool.Handle.Position + Vector3.new(0, 3, 0))
-        task.wait(0.5)
-    end
-end
-
-task.wait(1)
-teleportTo(original)
-end
-})
-folder:AddButton({
-	text = "Teleport To Apple",
-	flag = "button",
-	callback = function()
+teleportTo(original)  
+end)
+Tab1:Button("Teleport To Apple",function()
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -146,49 +102,9 @@ for _, tool in ipairs(tools) do
 end
 
 task.wait(1)
-teleportTo(original)
-end
-})
-folder:AddButton({
-	text = "Teleport To Molotov",
-	flag = "button",
-	callback = function()
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local root = character:WaitForChild("HumanoidRootPart")
-local original = root.Position
-
-local function getTools()
-    local list = {}
-    for _, obj in ipairs(workspace:GetDescendants()) do
-        if obj:IsA("Tool") and obj.Name:lower() == "molotov" then
-            table.insert(list, obj)
-        end
-    end
-    return list
-end
-
-local function teleportTo(pos)
-    root.CFrame = CFrame.new(pos)
-end
-
-local tools = getTools()
-for _, tool in ipairs(tools) do
-    if tool:FindFirstChild("Handle") then
-        teleportTo(tool.Handle.Position + Vector3.new(0, 3, 0))
-        task.wait(0.5)
-    end
-end
-
-task.wait(1)
-teleportTo(original)
-end
-})
-folder:AddButton({
-	text = "Teleport To Chair",
-	flag = "button",
-	callback = function()
+teleportTo(original)  
+end)
+Tab1:Button("Teleport To Chair",function()
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -218,14 +134,75 @@ for _, tool in ipairs(tools) do
 end
 
 task.wait(1)
-teleportTo(original)
+teleportTo(original)  
+end)
+Tab1:Button("Teleport To Bond",function()
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local root = character:WaitForChild("HumanoidRootPart")
+local original = root.Position
+
+local function getTools()
+    local list = {}
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj:IsA("Tool") and obj.Name:lower() == "quanglar" then
+            table.insert(list, obj)
+        end
+    end
+    return list
 end
-})
-bring:AddButton({
-	text = "Bring Bond",
-	flag = "button",
-	callback = function()
-		local player = game.Players.LocalPlayer
+
+local function teleportTo(pos)
+    root.CFrame = CFrame.new(pos)
+end
+
+local tools = getTools()
+for _, tool in ipairs(tools) do
+    if tool:FindFirstChild("Handle") then
+        teleportTo(tool.Handle.Position + Vector3.new(0, 3, 0))
+        task.wait(0.5)
+    end
+end
+
+task.wait(1)
+teleportTo(original)  
+end)
+Tab1:Button("Teleport To Molotov",function()
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local root = character:WaitForChild("HumanoidRootPart")
+local original = root.Position
+
+local function getTools()
+    local list = {}
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj:IsA("Tool") and obj.Name:lower() == "molotov" then
+            table.insert(list, obj)
+        end
+    end
+    return list
+end
+
+local function teleportTo(pos)
+    root.CFrame = CFrame.new(pos)
+end
+
+local tools = getTools()
+for _, tool in ipairs(tools) do
+    if tool:FindFirstChild("Handle") then
+        teleportTo(tool.Handle.Position + Vector3.new(0, 3, 0))
+        task.wait(0.5)
+    end
+end
+
+task.wait(1)
+teleportTo(original)  
+end)
+Tab1:Seperator("Bring Item")
+Tab1:Button("Bring Quanglar",function()
+    local player = game.Players.LocalPlayer
 		if not player.Character then return end
 		local root = player.Character:FindFirstChild("HumanoidRootPart")
 		if not root then return end
@@ -238,13 +215,9 @@ bring:AddButton({
 				end
 			end
 		end
-	end
-})
-bring:AddButton({
-	text = "Bring Gold",
-	flag = "button",
-	callback = function()
-		local player = game.Players.LocalPlayer
+end)
+Tab1:Button("Bring Gold",function()
+    local player = game.Players.LocalPlayer
 		if not player.Character then return end
 		local root = player.Character:FindFirstChild("HumanoidRootPart")
 		if not root then return end
@@ -257,19 +230,25 @@ bring:AddButton({
 				end
 			end
 		end
-	end
-})
-folder:AddLabel({
-	text =  "YouTube: Ziugpro",
-	type = "label"
-	})
-local noclipConnection
+end)
+Tab1:Button("Bring Silver",function()
+    local player = game.Players.LocalPlayer
+		if not player.Character then return end
+		local root = player.Character:FindFirstChild("HumanoidRootPart")
+		if not root then return end
 
-folder1:AddToggle({
-	text = "Noclip",
-	flag = "toggle",
-	callback = function(v)
-		if v then
+		for _, tool in pairs(workspace:GetDescendants()) do
+			if tool:IsA("Tool") and string.lower(tool.Name):find("silver bar") then
+				local handle = tool:FindFirstChild("Handle")
+				if handle then
+					handle.CFrame = root.CFrame * CFrame.new(0, 0, -5)
+				end
+			end
+		end
+end) 
+Tab1:Seperator("Misc")
+Tab1:Toggle("Noclip",false,function(value)
+if value then
 			noclipConnection = game:GetService("RunService").Stepped:Connect(function()
 				for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 					if part:IsA("BasePart") and part.CanCollide == true then
@@ -288,13 +267,9 @@ folder1:AddToggle({
 				end
 			end
 		end
-	end
-})
-folder1:AddButton({
-	text = "Unlock Camera",
-	flag = "button",
-	callback = function()
-		game.Workspace.CurrentCamera.FieldOfView = 100
+    end)
+Tab1:Toggle("Unlock Camera",false,function(value)
+game.Workspace.CurrentCamera.FieldOfView = 100
 		game.Players.LocalPlayer.CameraMaxZoomDistance = 100
 		game.Players.LocalPlayer.CameraMinZoomDistance = 0
 		local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
@@ -306,96 +281,15 @@ folder1:AddButton({
 		lighting.FogStart = 0
 		lighting.Brightness = 3
 		lighting.ClockTime = 12
-	end
-})
-folder1:AddSlider({
-	text = "Speed Players",
-	min = 50,
-	max = 10000000000000000000,
-	dual = true,
-	type = "slider",
-	callback = function(v)
-		local char = game.Players.LocalPlayer.Character
+    end)
+
+Tab1:Slider("Speed Runners",1,10000,25,function(value)
+        local char = game.Players.LocalPlayer.Character
 		if char then
 			local humanoid = char:FindFirstChildOfClass("Humanoid")
 			if humanoid then
-				humanoid.WalkSpeed = v
+				humanoid.WalkSpeed = value
 			end
 		end
-	end
-})
-folder1:AddButton({
-	text = "Teleport To Teslalab",
-	flag = "button",
-	callback = function()
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local rootPart = character:WaitForChild("HumanoidRootPart")
-
-        local destination = Vector3.new(-3537.87939453125, 19.36308479309082, -22530.5078125)
-        rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
-end
-})
-folder1:AddButton({
-	text = "Teleport To Fort",
-	flag = "button",
-	callback = function()
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local rootPart = character:WaitForChild("HumanoidRootPart")
-
-        local destination = Vector3.new(-2604.04052734375, 18.462738037109375, -15082.0966796875)
-        rootPart.CFrame = CFrame.new(destination + Vector3.new(0, 5, 0))
-end
-})
-fo:AddButton({
-    text = "Kill All Players",
-    flag = "button",
-    callback = function()
-        local Players = game:GetService("Players")
-        local localPlayer = Players.LocalPlayer
-        for _, player in pairs(Players:GetPlayers()) do
-            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("Humanoid") then
-                player.Character.Humanoid.Health = 0
-            end
-        end
-    end
-})
-fo:AddButton({
-    text = "Bring All Players",
-    flag = "button",
-    callback = function()
-        local Players = game:GetService("Players")
-        local localPlayer = Players.LocalPlayer
-        local char = localPlayer.Character
-        if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-        local hrp = char.HumanoidRootPart
-        for _, player in pairs(Players:GetPlayers()) do
-            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                player.Character.HumanoidRootPart.CFrame = hrp.CFrame + Vector3.new(0, 0, 5) -- Kéo họ đến gần bạn, cách 5 stud về phía trước
-            end
-        end
-    end
-})
-fo:AddButton({
-    text = "Teleport Kill All Then Return",
-    flag = "button",
-    callback = function()
-        local Players = game:GetService("Players")
-        local localPlayer = Players.LocalPlayer
-        local char = localPlayer.Character
-        if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-        local hrp = char.HumanoidRootPart
-        local originalCFrame = hrp.CFrame
-        for _, player in pairs(Players:GetPlayers()) do
-            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Humanoid") then
-                hrp.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 3, 0)
-                wait(0.2)
-                player.Character.Humanoid.Health = 0
-                wait(0.5)
-            end
-        end
-        hrp.CFrame = originalCFrame
-    end
-})
-library:Init() -- Đéo được xoá
+    end)
+Tab1:Line()

@@ -9,7 +9,7 @@ game.StarterGui:SetCore("SendNotification", {
 repeat task.wait() until game:IsLoaded()
 
 getgenv().Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
-getgenv().ToggleUI = "LeftControl"
+getgenv().ToggleUI = "RightControl"
 
 task.spawn(function()
     if not getgenv().LoadedMobileUI then
@@ -43,7 +43,7 @@ local v15 = v14:CreateWindow({
     Theme = "Dark",
     Acrylic = false,
     Size = UDim2.fromOffset(500, 360),
-    MinimizeKey = Enum.KeyCode.LeftControl
+    MinimizeKey = Enum.KeyCode.RightControl
 });
 local v16 = {
     Home = v15:AddTab({

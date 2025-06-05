@@ -292,4 +292,21 @@ Tab1:Slider("Speed Runners",1,10000,25,function(value)
 			end
 		end
     end)
+Tab1:Seperator("Antiban")
+Tab1:Toggle("Antiban", true, function(value)
+    if value then
+        local mt = getrawmetatable(game)
+        setreadonly(mt, false)
+        local old = mt.__namecall
+        mt.__namecall = newcclosure(function(self, ...)
+            if getnamecallmethod() == "Kick" and tostring(self) == "Players" then
+                return
+            end
+            return old(self, ...)
+        end)
+        setreadonly(mt, true)
+    else
+        warn("Không thể tắt chống kick nếu đã bật.")
+    end
+end)
 Tab1:Line()

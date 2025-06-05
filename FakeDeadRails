@@ -6,6 +6,8 @@ Tab1 = Library:Tab("⚙️ Main")
 
 Info:Seperator("Info Script:")
 Info:Label("Verison Script : Dead Rails Fake")
+Info:Seperator("Price Script:")
+Info:Label("0 VND - 0 USD")
 
 Tab1:Seperator("Teleport")
 Tab1:Button("Teleport To Gold",function()
@@ -293,7 +295,7 @@ Tab1:Slider("Speed Runners",1,10000,25,function(value)
 		end
     end)
 Tab1:Seperator("Antiban")
-Tab1:Toggle("Delete All File Anticheat",false,function(value)
+Tab1:Button("Delete All File Anticheat",function()
 for _, v in pairs(game:GetDescendants()) do
     if v:IsA("LocalScript") or v:IsA("ModuleScript") or v:IsA("Script") then
         local n = v.Name:lower()

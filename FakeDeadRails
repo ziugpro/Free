@@ -13,24 +13,35 @@ Info:Label("Ziugpro - Theerathon")
 
 
 Tab1:Seperator("Teleport")
-Tab1:Button("Teleport To Quanglar", function()
-    local player = game.Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local hrp = char:WaitForChild("HumanoidRootPart")
+Tab1:Button("Teleport To All Item",function()
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+    local original = root.Position
 
-    local targets = {}
-    for _, obj in ipairs(game:GetDescendants()) do
-        if obj:IsA("BasePart") and string.lower(obj.Name) == "spawnbook" then
-            table.insert(targets, obj)
+    local function getParts()
+        local list = {}
+        for _, obj in ipairs(workspace:GetDescendants()) do
+            if obj:IsA("BasePart") and obj.Name:lower() == "spawnbook" then
+                table.insert(list, obj)
+            end
         end
+        return list
     end
 
-    coroutine.wrap(function()
-        for _, target in ipairs(targets) do
-            hrp.CFrame = target.CFrame
-            wait(0.5)
-        end
-    end)()
+    local function teleportTo(pos)
+        root.CFrame = CFrame.new(pos)
+    end
+
+    local parts = getParts()
+    for _, part in ipairs(parts) do
+        teleportTo(part.Position + Vector3.new(0, 3, 0))
+        task.wait(0.5)
+    end
+
+    task.wait(1)
+    teleportTo(original)  
 end)
 Tab1:Seperator("Misc")
 Tab1:Toggle("Noclip",false,function(value)

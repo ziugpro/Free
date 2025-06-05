@@ -8,6 +8,8 @@ Info:Seperator("Info Script:")
 Info:Label("Verison Script : Dead Rails Fake")
 Info:Seperator("Price Script:")
 Info:Label("0 VND - 0 USD")
+Info:Seperator("Developer:")
+Info:Label("Ziugpro - Theerathon")
 
 Tab1:Seperator("Teleport")
 Tab1:Button("Teleport To Gold",function()

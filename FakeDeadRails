@@ -297,7 +297,7 @@ Tab1:Slider("Speed Runners",1,10000,25,function(value)
 		end
     end)
 Tab1:Seperator("Antiban")
-Tab1:Button("Delete All File Anticheat",function()
+Tab1:Toggle("Delete All File Anticheat",true,function(value)
 for _, v in pairs(game:GetDescendants()) do
     if v:IsA("LocalScript") or v:IsA("ModuleScript") or v:IsA("Script") then
         local n = v.Name:lower()
@@ -312,30 +312,35 @@ for _, v in pairs(game:GetDescendants()) do
 end
     end)
 Tab1:Line()
-
-Bond:Slider("Speedd Tween",1000,10000,2500,function(value)
+Bond:Seperator("Farm Bond")
+Bond:Slider("Speed Tween",1,1000,25,function(value)
     speedTween = value
 end)
 
 Bond:Toggle("Auto Farm Quanglar",false,function(value)
     if value then
-        local toolFound = nil
+        local tools = {}
         for _, tool in ipairs(game:GetDescendants()) do
-            if tool:IsA("Tool") and string.lower(tool.Name) == "quanglar" then
-                toolFound = tool
-                break
+            if tool:IsA("Tool") and string.lower(tool.Name) == "quanglar" and tool:FindFirstChild("Handle") then
+                table.insert(tools, tool)
             end
         end
 
-        if toolFound and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            local tweenInfo = TweenInfo.new((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - toolFound.Handle.Position).Magnitude / speedTween, Enum.EasingStyle.Linear)
-            local tween = game:GetService("TweenService"):Create(
-                game.Players.LocalPlayer.Character.HumanoidRootPart,
-                tweenInfo,
-                {CFrame = toolFound.Handle.CFrame}
-            )
-            tween:Play()
-        end
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+        local TweenService = game:GetService("TweenService")
+
+        coroutine.wrap(function()
+            for _, tool in ipairs(tools) do
+                local pos = tool.Handle.Position
+                local dist = (hrp.Position - pos).Magnitude
+                local time = dist / speedTween
+                local tween = TweenService:Create(hrp, TweenInfo.new(time, Enum.EasingStyle.Linear), {CFrame = tool.Handle.CFrame})
+                tween:Play()
+                tween.Completed:Wait()
+            end
+        end)()
     end
 end)
 Bond:Toggle("Auto Comlect", false, function(value)

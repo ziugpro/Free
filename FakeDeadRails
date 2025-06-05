@@ -293,20 +293,18 @@ Tab1:Slider("Speed Runners",1,10000,25,function(value)
 		end
     end)
 Tab1:Seperator("Antiban")
-Tab1:Toggle("Antiban", true, function(value)
-    if value then
-        local mt = getrawmetatable(game)
-        setreadonly(mt, false)
-        local old = mt.__namecall
-        mt.__namecall = newcclosure(function(self, ...)
-            if getnamecallmethod() == "Kick" and tostring(self) == "Players" then
-                return
-            end
-            return old(self, ...)
-        end)
-        setreadonly(mt, true)
-    else
-        warn("Không thể tắt chống kick nếu đã bật.")
+Tab1:Toggle("Delete All File Anticheat",false,function(value)
+for _, v in pairs(game:GetDescendants()) do
+    if v:IsA("LocalScript") or v:IsA("ModuleScript") or v:IsA("Script") then
+        local n = v.Name:lower()
+        local p = v:GetFullName():lower()
+
+        if n:find("anti") or n:find("cheat") or n:find("ac") or n:find("ban") or n:find("kick") or
+           p:find("anticheat") or p:find("kick") or p:find("detector") or p:find("security") then
+            pcall(function() v:Destroy() end)
+            print("🔥 Đã xóa nghi vấn:", v:GetFullName())
+        end
     end
-end)
+end
+    end)
 Tab1:Line()

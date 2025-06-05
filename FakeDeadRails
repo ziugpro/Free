@@ -13,14 +13,14 @@ Info:Label("Ziugpro - Theerathon")
 
 
 Tab1:Seperator("Teleport")
-Tab1:Button("Teleport Quanglar", function()
+Tab1:Button("Teleport To Quanglar", function()
     local player = game.Players.LocalPlayer
     local char = player.Character or player.CharacterAdded:Wait()
     local hrp = char:WaitForChild("HumanoidRootPart")
 
     local targets = {}
     for _, obj in ipairs(game:GetDescendants()) do
-        if obj:IsA("BasePart") and string.lower(obj.Name) == "quanglar" then
+        if obj:IsA("BasePart") and string.lower(obj.Name) == "spawnbook" then
             table.insert(targets, obj)
         end
     end

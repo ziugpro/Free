@@ -2,7 +2,7 @@ local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/ziug
 local Library = DarkraiX:Window("Tool Hub","","rbxthumb://type=Asset&id=76608011467652&w=420&h=420",Enum.KeyCode.RightControl);
 Info = Library:Tab("⚙️ Info")
 Tab1 = Library:Tab("⚙️ Main")
-
+Bond = Library:Tab("⚙️ Farming")
 
 Info:Seperator("Info Script:")
 Info:Label("Verison Script : Dead Rails Fake")
@@ -312,3 +312,40 @@ for _, v in pairs(game:GetDescendants()) do
 end
     end)
 Tab1:Line()
+
+Bond:Slider("Speedd Tween",1000,10000,2500,function(value)
+    speedTween = value
+end)
+
+Bond:Toggle("Auto Farm Quanglar",false,function(value)
+    if value then
+        local toolFound = nil
+        for _, tool in ipairs(game:GetDescendants()) do
+            if tool:IsA("Tool") and string.lower(tool.Name) == "quanglar" then
+                toolFound = tool
+                break
+            end
+        end
+
+        if toolFound and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local tweenInfo = TweenInfo.new((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - toolFound.Handle.Position).Magnitude / speedTween, Enum.EasingStyle.Linear)
+            local tween = game:GetService("TweenService"):Create(
+                game.Players.LocalPlayer.Character.HumanoidRootPart,
+                tweenInfo,
+                {CFrame = toolFound.Handle.CFrame}
+            )
+            tween:Play()
+        end
+    end
+end)
+Bond:Toggle("Auto Comlect", false, function(value)
+    _G.AutoClick = value
+
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+
+    while _G.AutoClick do
+        task.wait()
+        VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+        VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+    end
+end)

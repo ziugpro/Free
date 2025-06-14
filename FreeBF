@@ -6163,6 +6163,49 @@ spawn(function()
         end);
     end
 end);
+local SuperBringToggle = v16.Setting:AddToggle("ToggleSuperBringMob", {
+    Title = "Gom Quái v2 ( Đang Phát Triển )",
+    Description = "",
+    Default = true
+})
+
+SuperBringToggle:OnChanged(function(state)
+    _G.SuperBringMob = state
+end)
+
+v17.ToggleSuperBringMob:SetValue(true)
+
+spawn(function()
+    while true do
+        pcall(function()
+            for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                if _G.SuperBringMob and bringmob then
+                    if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                        if v:FindFirstChild("HumanoidRootPart") and (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 1000000000 then
+                            for _ = 1, 3 do
+                                v.HumanoidRootPart.CFrame = FarmPos
+                            end
+                            v.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+                            v.Humanoid.PlatformStand = true
+                            v.Humanoid.JumpPower = 0
+                            v.Humanoid.WalkSpeed = 0
+                            v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                            v.HumanoidRootPart.Transparency = 1
+                            v.HumanoidRootPart.CanCollide = false
+                            v.Head.CanCollide = false
+                            if v.Humanoid:FindFirstChild("Animator") then
+                                v.Humanoid.Animator:Destroy()
+                            end
+                            v.Humanoid:ChangeState(11)
+                            v.Humanoid:ChangeState(14)
+                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
 local v91 = v16.Setting:AddToggle("ToggleRemoveNotify", {
     Title = "Xóa Thông Báo",
     Description = "",
@@ -9052,84 +9095,6 @@ spawn(function()
                 end
             end
         end
-    end
-end);
-local v178 = v16.Auto:AddToggle("Tudong", {
-    Title = "Tự Động Mua Full Võ",
-    Description = "",
-    Default = false
-});
-v178:OnChanged(function(v415)
-    _G.Tudong = v415;
-end);
-spawn(function()
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
-end);
-local v180 = v16.Auto:AddToggle("ToggleBringMob", {
-    Title = "Gom Quái v2",
-    Description = "",
-    Default = false
-})
-v180:OnChanged(function(v)
-    _G.BringMob = v
-end)
-
-spawn(function()
-    while wait() do
-        if _G.BringMob then
-            for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                    v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
-                end
-            end
-        end
-    end
-end)
-local bringmobv3 = v16.Auto:AddToggle("bringmobv3", {
-    Title = "Gom Quái ( Đã Sửa Lỗi )",
-    Description = "",
-    Default = true
-});
-bringmobv3:OnChanged(function(v277)
-    _G.bringmobv3 = v277;
-end);
-bringmobv3:SetValue(true)
-
-spawn(function()
-    while wait() do
-        pcall(function()
-            for _, v744 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                if (_G.bringmobv3 and bringmobv3) then
-                    if ((v744.Name == MonFarm) and v744:FindFirstChild("Humanoid") and (v744.Humanoid.Health > 0)) then
-                        if v744:FindFirstChild("HumanoidRootPart") then
-                            v744.Head.CanCollide = false;
-                            v744.HumanoidRootPart.CanCollide = false;
-                            v744.HumanoidRootPart.Size = Vector3.new(80, 80, 80);
-                            v744.HumanoidRootPart.CFrame = FarmPos + Vector3.new(math.random(-5,5), 0, math.random(-5,5));
-                            v744.Humanoid.JumpPower = 0;
-                            v744.Humanoid.WalkSpeed = 0;
-                            v744.HumanoidRootPart.Transparency = 1;
-                            if v744.Humanoid:FindFirstChild("Animator") then
-                                v744.Humanoid.Animator:Destroy();
-                            end
-                            v744.Humanoid:ChangeState(11);
-                            v744.Humanoid:ChangeState(14);
-                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge);
-                        end
-                    end
-                end
-            end
-        end);
     end
 end);
 local Input = v16.Webhook:AddInput("Input", {

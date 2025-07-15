@@ -42,7 +42,7 @@ local v15 = v14:CreateWindow({
     TabWidth = 130,
     Theme = "Dark",
     Acrylic = false,
-    Size = UDim2.fromOffset(500, 360),
+    Size = UDim2.fromOffset(505, 340),
     MinimizeKey = Enum.KeyCode.RightControl
 });
 local v16 = {
@@ -54,6 +54,9 @@ local v16 = {
     }),
     Draco = v15:AddTab({
         Title = "Tộc Rồng"
+    }),
+    General = v15:AddTab({
+        Title = "Tự Động Hoá"
     }),
     Main = v15:AddTab({
         Title = "Cày"
@@ -69,9 +72,6 @@ local v16 = {
     }),
     Status = v15:AddTab({
         Title = "Máy Chủ"
-    }),
-    Auto = v15:AddTab({
-        Title = "Gom Quái"
     }),
     Stats = v15:AddTab({
         Title = "Chỉ Số"

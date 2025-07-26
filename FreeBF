@@ -1,5 +1,6 @@
 local PremiumKeys = {  
     "free-key-24h-bloxfruit-script",  
+    "RPyuHRSmXa6JeUY",
 }  
   
 local BlacklistKeys = {  

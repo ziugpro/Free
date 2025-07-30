@@ -1,0 +1,893 @@
+getgenv().Settings = {
+       Toggle_ClickAutoClick = nil, 
+       Button_ResetClickPosition = nil,
+       ToggleESPNPC = nil,
+       ToggleGodESP = nil,
+       ToggleUltraSpeed = nil,
+       ToggleAntiESP = nil,
+       ToggleHyperSensitiveSpeed = nil,
+       ToggleESPPlayerRealXtremeV2 = nil,
+}
+local FileName = tostring(game.Players.LocalPlayer.UserId).."_Settings.json"
+local BaseFolder = "ToolHub"
+local SubFolder = "Database"
+
+function SaveSetting() 
+    local json
+    local HttpService = game:GetService("HttpService")    
+    if writefile then
+        json = HttpService:JSONEncode(getgenv().Settings)
+        if not isfolder(BaseFolder) then
+            makefolder(BaseFolder)
+        end
+        if not isfolder(BaseFolder.."/"..SubFolder) then
+            makefolder(BaseFolder.."/"..SubFolder)
+        end        
+        writefile(BaseFolder.."/"..SubFolder.."/"..FileName, json)
+    else
+        error("ERROR: Can't save your settings")
+    end
+end
+function LoadSetting()
+    local HttpService = game:GetService("HttpService")
+    if readfile and isfile and isfile(BaseFolder.."/"..SubFolder.."/"..FileName) then
+        getgenv().Settings = HttpService:JSONDecode(readfile(BaseFolder.."/"..SubFolder.."/"..FileName))
+    end
+end
+LoadSetting()
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Tool Hub",
+    Text = "Success Loading",
+    Icon = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420",
+    Duration = 5,
+    Callback = function()
+    end
+})
+repeat task.wait() until game:IsLoaded()
+getgenv().Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
+getgenv().ToggleUI = "LeftControl"
+task.spawn(function()
+    if not getgenv().LoadedMobileUI then
+        getgenv().LoadedMobileUI = true
+        local OpenUI = Instance.new("ScreenGui")
+        local ImageButton = Instance.new("ImageButton")
+        local UICorner = Instance.new("UICorner")
+        OpenUI.Name = "OpenUI"
+        OpenUI.Parent = game:GetService("CoreGui")
+        OpenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        ImageButton.Parent = OpenUI
+        ImageButton.BackgroundColor3 = Color3.fromRGB(105, 105, 105)
+        ImageButton.BackgroundTransparency = 0.8
+        ImageButton.Position = UDim2.new(0, 5, 0, 5)
+        ImageButton.Size = UDim2.new(0, 55, 0, 55)
+        ImageButton.Image = getgenv().Image
+        ImageButton.Draggable = false
+        ImageButton.Transparency = 1
+        UICorner.CornerRadius = UDim.new(100)
+        UICorner.Parent = ImageButton
+        ImageButton.MouseButton1Click:Connect(function()
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, getgenv().ToggleUI, false, game)
+        end)
+    end
+end)
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Window = Fluent:CreateWindow({
+    Title = "Tool Hub - Free",
+    SubTitle = "By Ziugpro",
+    TabWidth = 130,
+    Size = UDim2.fromOffset(505, 335),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+local Tabs = {
+        Defense = Window:AddTab({ Title = "Tab Misc", Icon = "" }),
+        Main = Window:AddTab({ Title = "Tab General", Icon = "" }),
+    
+}
+Tabs.Main:AddButton({
+    Title = "Teleport To Emote Shop",
+    Description = "",
+    Callback = function()
+
+        local player = game.Players.LocalPlayer
+        if player ~= nil then
+
+            local character = player.Character
+            if character == nil then
+                character = player.CharacterAdded:Wait()
+            end
+
+            if character ~= nil then
+
+                local rootPart = character:FindFirstChild("HumanoidRootPart")
+                if rootPart ~= nil then
+
+                    local positionX = -152.0920867919922
+                    local positionY = -13.902108192443848
+                    local positionZ = 1393.734619140625
+
+                    local vectorA = Vector3.new(positionX, positionY, positionZ)
+                    local vectorB = Vector3.new(positionX, positionY, positionZ)
+
+                    local sumVector = vectorA + vectorB
+
+                    local targetCFrame = CFrame.new(sumVector)
+
+                    rootPart.CFrame = targetCFrame
+
+                end
+            end
+        end
+
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Teleport To Ship Shop",
+    Description = "",
+    Callback = function()
+
+        local player = game.Players.LocalPlayer
+        if player ~= nil then
+
+            local character = player.Character
+            if character == nil then
+                character = player.CharacterAdded:Wait()
+            end
+
+            if character ~= nil then
+
+                local rootPart = character:FindFirstChild("HumanoidRootPart")
+                if rootPart ~= nil then
+
+                    local positionX = -200.2934112548828
+                    local positionY = -14.833053588867188
+                    local positionZ = 1446.2545166015625
+
+                    local vectorA = Vector3.new(positionX, positionY, positionZ)
+                    local vectorB = Vector3.new(positionX, positionY, positionZ)
+
+                    local sumVector = vectorA + vectorB
+
+                    local targetCFrame = CFrame.new(sumVector)
+
+                    rootPart.CFrame = targetCFrame
+
+                end
+            end
+        end
+
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Teleport To Sword Shop",
+    Description = "",
+    Callback = function()
+
+        local player = game.Players.LocalPlayer
+        if player ~= nil then
+
+            local character = player.Character
+            if character == nil then
+                character = player.CharacterAdded:Wait()
+            end
+
+            if character ~= nil then
+
+                local rootPart = character:FindFirstChild("HumanoidRootPart")
+                if rootPart ~= nil then
+
+                    local positionX = -10.246593475341797
+                    local positionY = 2.942673683166504
+                    local positionZ = 1409.27880859375
+
+                    local vectorA = Vector3.new(positionX, positionY, positionZ)
+                    local vectorB = Vector3.new(positionX, positionY, positionZ)
+
+                    local sumVector = vectorA + vectorB
+
+                    local targetCFrame = CFrame.new(sumVector)
+
+                    rootPart.CFrame = targetCFrame
+
+                end
+            end
+        end
+
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Teleport To ??? Shop",
+    Description = "",
+    Callback = function()
+
+        local player = game.Players.LocalPlayer
+        if player ~= nil then
+
+            local character = player.Character
+            if character == nil then
+                character = player.CharacterAdded:Wait()
+            end
+
+            if character ~= nil then
+
+                local rootPart = character:FindFirstChild("HumanoidRootPart")
+                if rootPart ~= nil then
+
+                    local positionX = 0
+                    local positionY = 0
+                    local positionZ = 0
+
+                    local vectorA = Vector3.new(positionX, positionY, positionZ)
+                    local vectorB = Vector3.new(positionX, positionY, positionZ)
+
+                    local sumVector = vectorA + vectorB
+
+                    local targetCFrame = CFrame.new(sumVector)
+
+                    rootPart.CFrame = targetCFrame
+
+                end
+            end
+        end
+
+    end
+})
+local Main = Tabs.Main:AddSection("Faming")
+local Button_ResetClickPosition = Tabs.Main:AddButton({
+    Title = "Reset Click Setting",
+    Description = "",
+    Callback = function()
+        _G.ClickPosition_X = nil
+        _G.ClickPosition_Y = nil
+        _G.ClickVector2 = nil
+        _G.ClickCaptured = false
+        _G.ClickStarted = false
+        _G.ClickDone = false
+        getgenv().Settings.ClickPosition_X = nil
+        getgenv().Settings.ClickPosition_Y = nil
+        getgenv().Settings.ClickVector2 = nil
+        SaveSetting()
+    end
+})
+
+local Toggle_ClickAutoClick = Tabs.Main:AddToggle("Toggle_ClickAutoClick", {
+    Title = "Auto Click",
+    getgenv().Settings.Toggle_ClickAutoClick or false
+})
+
+Toggle_ClickAutoClick:OnChanged(function(Value)
+    _G.Toggle_ClickAutoClick = Value
+end)
+
+_G.ClickPosition_X = nil
+_G.ClickPosition_Y = nil
+_G.ClickVector2 = nil
+_G.ClickCaptured = false
+_G.ClickStarted = false
+_G.ClickDone = false
+
+spawn(function()
+    while wait() do
+        if _G.Toggle_ClickAutoClick then
+            getgenv().Settings.Toggle_ClickAutoClick = true
+            SaveSetting()
+
+            if not _G.ClickCaptured and not _G.ClickStarted and not _G.ClickVector2 then
+                _G.ClickStarted = true
+
+                local UserInputService = game:GetService("UserInputService")
+                local MouseLocation = nil
+                local CaptureConnection = nil
+
+                CaptureConnection = UserInputService.InputBegan:Connect(function(input, isProcessed)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        if not isProcessed then
+                            MouseLocation = UserInputService:GetMouseLocation()
+                            if MouseLocation then
+                                _G.ClickPosition_X = MouseLocation.X
+                                _G.ClickPosition_Y = MouseLocation.Y
+                                _G.ClickVector2 = Vector2.new(_G.ClickPosition_X, _G.ClickPosition_Y)
+                                getgenv().Settings.ClickPosition_X = _G.ClickPosition_X
+                                getgenv().Settings.ClickPosition_Y = _G.ClickPosition_Y
+                                getgenv().Settings.ClickVector2 = _G.ClickVector2
+                                SaveSetting()
+                                _G.ClickCaptured = true
+                                if CaptureConnection then
+                                    CaptureConnection:Disconnect()
+                                end
+                            end
+                        end
+                    end
+                end)
+            end
+
+            if _G.ClickVector2 and not _G.ClickDone and _G.ClickCaptured then
+                wait(2)
+
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+
+                if VirtualInputManager and _G.ClickVector2 then
+                    VirtualInputManager:SendMouseButtonEvent(
+                        _G.ClickVector2.X,
+                        _G.ClickVector2.Y,
+                        0,
+                        true,
+                        game,
+                        0
+                    )
+                    VirtualInputManager:SendMouseButtonEvent(
+                        _G.ClickVector2.X,
+                        _G.ClickVector2.Y,
+                        0,
+                        false,
+                        game,
+                        0
+                    )
+                    _G.ClickDone = true
+                end
+            end
+        else
+            getgenv().Settings.Toggle_ClickAutoClick = false
+            SaveSetting()
+            _G.ClickPosition_X = nil
+            _G.ClickPosition_Y = nil
+            _G.ClickVector2 = nil
+            _G.ClickCaptured = false
+            _G.ClickStarted = false
+            _G.ClickDone = false
+        end
+    end
+end)
+local Main = Tabs.Main:AddSection("Esp")
+local ToggleESPPlayerRealXtremeV2 = Tabs.Main:AddToggle("ToggleESPPlayerRealXtremeV2", {
+    Title = "⚡ Ultimate Player ESP",
+    getgenv().Settings.ToggleESPPlayerRealXtremeV2 or false
+})
+
+ToggleESPPlayerRealXtremeV2:OnChanged(function(Value)
+    _G.ToggleESPPlayerRealXtremeV2 = Value
+end)
+
+spawn(function()
+    while wait() do
+        if _G.ToggleESPPlayerRealXtremeV2 then
+            getgenv().Settings.ToggleESPPlayerRealXtremeV2 = true
+            SaveSetting()
+
+            for _, Player in pairs(game.Players:GetPlayers()) do
+                if Player ~= game.Players.LocalPlayer then
+                    local Character = Player.Character
+                    if Character and Character:FindFirstChild("HumanoidRootPart") and not Character:FindFirstChild("SUPER_ESP_GUI") then
+
+                        local ESPGui = Instance.new("BillboardGui")
+                        ESPGui.Name = "SUPER_ESP_GUI"
+                        ESPGui.Adornee = Character:FindFirstChild("HumanoidRootPart")
+                        ESPGui.Size = UDim2.new(0, 250, 0, 65)
+                        ESPGui.StudsOffset = Vector3.new(0, 3, 0)
+                        ESPGui.AlwaysOnTop = true
+                        ESPGui.ResetOnSpawn = false
+                        ESPGui.Parent = Character
+
+                        local BackgroundFrame = Instance.new("Frame")
+                        BackgroundFrame.Name = "BackgroundFrame"
+                        BackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
+                        BackgroundFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+                        BackgroundFrame.BackgroundTransparency = 0.4
+                        BackgroundFrame.BorderSizePixel = 0
+                        BackgroundFrame.Parent = ESPGui
+
+                        local StrokeFrame = Instance.new("UIStroke")
+                        StrokeFrame.Name = "StrokeFrame"
+                        StrokeFrame.Color = Color3.fromRGB(0, 255, 255)
+                        StrokeFrame.Thickness = 2
+                        StrokeFrame.Transparency = 0.1
+                        StrokeFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+                        StrokeFrame.Parent = BackgroundFrame
+
+                        local PlayerName = Instance.new("TextLabel")
+                        PlayerName.Name = "PlayerName"
+                        PlayerName.Size = UDim2.new(1, 0, 0.33, 0)
+                        PlayerName.Position = UDim2.new(0, 0, 0, 0)
+                        PlayerName.BackgroundTransparency = 1
+                        PlayerName.Text = "👤 " .. Player.DisplayName .. " (" .. Player.Name .. ")"
+                        PlayerName.TextColor3 = Color3.fromRGB(255, 255, 255)
+                        PlayerName.TextStrokeTransparency = 0
+                        PlayerName.TextScaled = true
+                        PlayerName.Font = Enum.Font.GothamBlack
+                        PlayerName.Parent = BackgroundFrame
+
+                        local TeamInfo = Instance.new("TextLabel")
+                        TeamInfo.Name = "TeamInfo"
+                        TeamInfo.Size = UDim2.new(1, 0, 0.33, 0)
+                        TeamInfo.Position = UDim2.new(0, 0, 0.33, 0)
+                        TeamInfo.BackgroundTransparency = 1
+                        TeamInfo.Text = "🏳️ Team: " .. tostring(Player.Team)
+                        TeamInfo.TextColor3 = Color3.fromRGB(255, 215, 0)
+                        TeamInfo.TextStrokeTransparency = 0
+                        TeamInfo.TextScaled = true
+                        TeamInfo.Font = Enum.Font.GothamBold
+                        TeamInfo.Parent = BackgroundFrame
+
+                        local DistanceLabel = Instance.new("TextLabel")
+                        DistanceLabel.Name = "DistanceLabel"
+                        DistanceLabel.Size = UDim2.new(1, 0, 0.33, 0)
+                        DistanceLabel.Position = UDim2.new(0, 0, 0.66, 0)
+                        DistanceLabel.BackgroundTransparency = 1
+                        local distance = math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Character.HumanoidRootPart.Position).Magnitude)
+                        DistanceLabel.Text = "📏 "..distance.." studs"
+                        DistanceLabel.TextColor3 = Color3.fromRGB(144, 238, 144)
+                        DistanceLabel.TextStrokeTransparency = 0
+                        DistanceLabel.TextScaled = true
+                        DistanceLabel.Font = Enum.Font.GothamMedium
+                        DistanceLabel.Parent = BackgroundFrame
+                    end
+                end
+            end
+
+        else
+            getgenv().Settings.ToggleESPPlayerRealXtremeV2 = false
+            SaveSetting()
+
+            for _, Player in pairs(game.Players:GetPlayers()) do
+                local Character = Player.Character
+                if Character and Character:FindFirstChild("SUPER_ESP_GUI") then
+                    Character:FindFirstChild("SUPER_ESP_GUI"):Destroy()
+                end
+            end
+        end
+    end
+end)
+local ToggleGodESP = Tabs.Esp:AddToggle("ToggleGodESP", {
+    Title = "🛡️ God ESP - See All Dangers",
+    Default = false
+})
+
+ToggleGodESP:OnChanged(function(Value)
+    _G.ToggleGodESP = Value
+end)
+
+spawn(function()
+    while task.wait(1) do
+        if _G.ToggleGodESP then
+
+            for _,v in pairs(game.Players:GetPlayers()) do
+                if v ~= game.Players.LocalPlayer and v.Character and not v.Character:FindFirstChild("GodESP_Player") then
+                    local b = Instance.new("BillboardGui", v.Character)
+                    b.Name = "GodESP_Player"
+                    b.Size = UDim2.new(0, 200, 0, 50)
+                    b.Adornee = v.Character:FindFirstChild("HumanoidRootPart")
+                    b.AlwaysOnTop = true
+                    b.StudsOffset = Vector3.new(0,4,0)
+                    local f = Instance.new("Frame", b)
+                    f.Size = UDim2.new(1, 0, 1, 0)
+                    f.BackgroundColor3 = Color3.fromRGB(10,10,10)
+                    f.BackgroundTransparency = 0.3
+                    local stroke = Instance.new("UIStroke", f)
+                    stroke.Color = Color3.fromRGB(255, 0, 0)
+                    stroke.Thickness = 2
+                    local t = Instance.new("TextLabel", f)
+                    t.Size = UDim2.new(1, 0, 1, 0)
+                    t.BackgroundTransparency = 1
+                    t.Text = "ENEMY: "..v.Name
+                    t.TextColor3 = Color3.fromRGB(255, 100, 100)
+                    t.Font = Enum.Font.GothamBlack
+                    t.TextSize = 14
+                end
+            end
+
+            for _,npc in pairs(workspace:GetDescendants()) do
+                if npc:IsA("Model") and npc:FindFirstChild("HumanoidRootPart") and npc:FindFirstChild("Humanoid") and not npc:FindFirstChild("GodESP_NPC") then
+                    if not game.Players:GetPlayerFromCharacter(npc) then
+                        local b = Instance.new("BillboardGui", npc)
+                        b.Name = "GodESP_NPC"
+                        b.Size = UDim2.new(0, 150, 0, 40)
+                        b.Adornee = npc.HumanoidRootPart
+                        b.AlwaysOnTop = true
+                        b.StudsOffset = Vector3.new(0,4,0)
+                        local f = Instance.new("Frame", b)
+                        f.Size = UDim2.new(1, 0, 1, 0)
+                        f.BackgroundColor3 = Color3.fromRGB(30,30,30)
+                        f.BackgroundTransparency = 0.3
+                        local stroke = Instance.new("UIStroke", f)
+                        stroke.Color = Color3.fromRGB(255, 200, 0)
+                        stroke.Thickness = 1
+                        local t = Instance.new("TextLabel", f)
+                        t.Size = UDim2.new(1, 0, 1, 0)
+                        t.BackgroundTransparency = 1
+                        t.Text = "⚠️ NPC"
+                        t.TextColor3 = Color3.fromRGB(255, 200, 0)
+                        t.Font = Enum.Font.Gotham
+                        t.TextSize = 13
+                    end
+                end
+            end
+
+            for _,obj in pairs(workspace:GetDescendants()) do
+                if obj:IsA("Tool") and not obj:FindFirstChild("GodESP_Item") then
+                    local b = Instance.new("BillboardGui", obj)
+                    b.Name = "GodESP_Item"
+                    b.Size = UDim2.new(0, 140, 0, 30)
+                    b.Adornee = obj:FindFirstChild("Handle") or obj:FindFirstChildOfClass("Part")
+                    b.AlwaysOnTop = true
+                    b.StudsOffset = Vector3.new(0,3,0)
+                    local f = Instance.new("Frame", b)
+                    f.Size = UDim2.new(1, 0, 1, 0)
+                    f.BackgroundColor3 = Color3.fromRGB(20,20,50)
+                    f.BackgroundTransparency = 0.2
+                    local stroke = Instance.new("UIStroke", f)
+                    stroke.Color = Color3.fromRGB(0, 100, 255)
+                    stroke.Thickness = 2
+                    local t = Instance.new("TextLabel", f)
+                    t.Size = UDim2.new(1, 0, 1, 0)
+                    t.BackgroundTransparency = 1
+                    t.Text = "💎 "..obj.Name
+                    t.TextColor3 = Color3.fromRGB(0, 150, 255)
+                    t.Font = Enum.Font.Gotham
+                    t.TextSize = 13
+                end
+            end
+
+            for _,trap in pairs(workspace:GetDescendants()) do
+                if trap:IsA("Part") and trap.Name:lower():find("spike") and not trap:FindFirstChild("GodESP_Trap") then
+                    local b = Instance.new("BillboardGui", trap)
+                    b.Name = "GodESP_Trap"
+                    b.Size = UDim2.new(0, 140, 0, 30)
+                    b.Adornee = trap
+                    b.AlwaysOnTop = true
+                    b.StudsOffset = Vector3.new(0,2,0)
+                    local f = Instance.new("Frame", b)
+                    f.Size = UDim2.new(1, 0, 1, 0)
+                    f.BackgroundColor3 = Color3.fromRGB(50,0,0)
+                    f.BackgroundTransparency = 0.1
+                    local stroke = Instance.new("UIStroke", f)
+                    stroke.Color = Color3.fromRGB(255, 50, 50)
+                    stroke.Thickness = 2
+                    local t = Instance.new("TextLabel", f)
+                    t.Size = UDim2.new(1, 0, 1, 0)
+                    t.BackgroundTransparency = 1
+                    t.Text = "⚠️ TRAP"
+                    t.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    t.Font = Enum.Font.FredokaOne
+                    t.TextSize = 14
+                end
+            end
+
+        else
+            for _,v in pairs(workspace:GetDescendants()) do
+                if v:IsA("BillboardGui") and v.Name:match("^GodESP_") then
+                    v:Destroy()
+                end
+            end
+            for _,plr in pairs(game.Players:GetPlayers()) do
+                if plr.Character then
+                    local b = plr.Character:FindFirstChild("GodESP_Player")
+                    if b then b:Destroy() end
+                end
+            end
+        end
+    end
+end)
+local ToggleESPNPC = Tabs.Main:AddToggle("ToggleESPNPC", {
+    Title = "👾 NPC ESP",
+    getgenv().Settings.ToggleESPNPC or false
+})
+
+ToggleESPNPC:OnChanged(function(Value)
+    _G.ToggleESPNPC = Value
+end)
+
+spawn(function()
+    while wait() do
+        if _G.ToggleESPNPC then
+            getgenv().Settings.ToggleESPNPC = true
+            SaveSetting()
+
+            for _, npc in pairs(workspace:GetDescendants()) do
+                if npc:IsA("Model") and not game.Players:GetPlayerFromCharacter(npc) and not npc:FindFirstChild("NPC_ESP_GUI") and npc:FindFirstChild("HumanoidRootPart") and npc:FindFirstChildOfClass("Humanoid") then
+
+                    local gui = Instance.new("BillboardGui")
+                    gui.Name = "NPC_ESP_GUI"
+                    gui.Adornee = npc:FindFirstChild("HumanoidRootPart")
+                    gui.Size = UDim2.new(0, 200, 0, 60)
+                    gui.StudsOffset = Vector3.new(0, 3, 0)
+                    gui.AlwaysOnTop = true
+                    gui.ResetOnSpawn = false
+                    gui.Parent = npc
+
+                    local background = Instance.new("Frame")
+                    background.Name = "Background"
+                    background.Size = UDim2.new(1, 0, 1, 0)
+                    background.BackgroundColor3 = Color3.fromRGB(40, 0, 0)
+                    background.BackgroundTransparency = 0.3
+                    background.BorderSizePixel = 0
+                    background.Parent = gui
+
+                    local stroke = Instance.new("UIStroke")
+                    stroke.Name = "UIStroke"
+                    stroke.Color = Color3.fromRGB(255, 0, 0)
+                    stroke.Thickness = 2
+                    stroke.Transparency = 0.2
+                    stroke.Parent = background
+
+                    local npcName = Instance.new("TextLabel")
+                    npcName.Name = "NPCName"
+                    npcName.Size = UDim2.new(1, 0, 0.5, 0)
+                    npcName.Position = UDim2.new(0, 0, 0, 0)
+                    npcName.BackgroundTransparency = 1
+                    npcName.Text = "🤖 " .. npc.Name
+                    npcName.TextColor3 = Color3.fromRGB(255, 100, 100)
+                    npcName.TextStrokeTransparency = 0
+                    npcName.Font = Enum.Font.GothamBold
+                    npcName.TextScaled = true
+                    npcName.TextWrapped = true
+                    npcName.Parent = background
+
+                    local distanceText = Instance.new("TextLabel")
+                    distanceText.Name = "Distance"
+                    distanceText.Size = UDim2.new(1, 0, 0.5, 0)
+                    distanceText.Position = UDim2.new(0, 0, 0.5, 0)
+                    distanceText.BackgroundTransparency = 1
+                    local localPos = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                    local dist = localPos and npc:FindFirstChild("HumanoidRootPart") and (localPos - npc.HumanoidRootPart.Position).Magnitude or 0
+                    distanceText.Text = "📏 " .. math.floor(dist) .. " studs"
+                    distanceText.TextColor3 = Color3.fromRGB(255, 150, 150)
+                    distanceText.TextStrokeTransparency = 0
+                    distanceText.Font = Enum.Font.Gotham
+                    distanceText.TextScaled = true
+                    distanceText.TextWrapped = true
+                    distanceText.Parent = background
+                end
+            end
+
+        else
+            getgenv().Settings.ToggleESPNPC = false
+            SaveSetting()
+
+            for _, npc in pairs(workspace:GetDescendants()) do
+                if npc:IsA("Model") and npc:FindFirstChild("NPC_ESP_GUI") then
+                    npc:FindFirstChild("NPC_ESP_GUI"):Destroy()
+                end
+            end
+        end
+    end
+end)
+local ToggleAutoEvade = Tabs.Defense:AddToggle("ToggleAutoEvade", {
+    Title = "⚡ Auto Evade When Under Attack",
+    Default = false
+})
+
+ToggleAutoEvade:OnChanged(function(Value)
+    _G.ToggleAutoEvade = Value
+end)
+
+spawn(function()
+    local player = game.Players.LocalPlayer
+    local lastHealth = nil
+    local lastEvade = 0
+
+    while task.wait(0.25) do
+        if _G.ToggleAutoEvade then
+            local character = player.Character
+            if character and character:FindFirstChild("Humanoid") and character:FindFirstChild("HumanoidRootPart") then
+                local humanoid = character:FindFirstChild("Humanoid")
+                local rootPart = character:FindFirstChild("HumanoidRootPart")
+
+                if humanoid and rootPart then
+                    if lastHealth == nil then
+                        lastHealth = humanoid.Health
+                    end
+
+                    -- Nếu máu tụt => đang bị tấn công
+                    if humanoid.Health < lastHealth or (tick() - lastEvade >= 3 and isDangerNearby(rootPart)) then
+                        local evadeDirection = Vector3.new(
+                            math.random(-20, 20),
+                            0,
+                            math.random(-20, 20)
+                        ).Unit * math.random(15, 25)
+
+                        local targetPosition = rootPart.Position + evadeDirection + Vector3.new(0, 10, 0)
+                        character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+
+                        lastEvade = tick()
+                    end
+
+                    lastHealth = humanoid.Health
+                end
+            end
+        end
+    end
+end)
+
+function isDangerNearby(rootPart)
+    for _, otherPlayer in pairs(game.Players:GetPlayers()) do
+        if otherPlayer ~= game.Players.LocalPlayer then
+            local char = otherPlayer.Character
+            if char and char:FindFirstChild("HumanoidRootPart") then
+                local dist = (char.HumanoidRootPart.Position - rootPart.Position).Magnitude
+                if dist < 15 then
+                    return true
+                end
+            end
+        end
+    end
+    return false
+end
+local Main = Tabs.Defense:AddSection("Player")
+local ToggleAntiESP = Tabs.Defense:AddToggle("ToggleAntiESP", {
+    Title = "Ultra Anti ESP (Lag May Occur)",
+    Default = getgenv().Settings.ToggleAntiESP or false
+})
+
+ToggleAntiESP:OnChanged(function(Value)
+    _G.ToggleAntiESP = Value
+    getgenv().Settings.ToggleAntiESP = Value
+        SaveSetting()
+    end
+end)
+
+spawn(function()
+    while task.wait(0.2) do
+        if _G.ToggleAntiESP then
+            local success, player = pcall(function()
+                return game:GetService("Players").LocalPlayer
+            end)
+
+            if success and player then
+                local character = player.Character or player.CharacterAdded:Wait()
+                if character and typeof(character) == "Instance" then
+                    for _, descendant in ipairs(character:GetDescendants()) do
+                        if descendant:IsA("BasePart") or descendant:IsA("Decal") then
+                            pcall(function()
+                                descendant.LocalTransparencyModifier = 1
+                                if descendant:IsA("BasePart") then
+                                    descendant.CanCollide = true
+                                    descendant.CastShadow = false
+                                    descendant.CanQuery = false
+                                    descendant.CanTouch = false
+                                    descendant.Material = Enum.Material.ForceField
+                                    descendant.Color = Color3.fromRGB(0, 0, 0)
+                                end
+                            end)
+                        end
+                    end
+                end
+            end
+        else
+            local success, player = pcall(function()
+                return game:GetService("Players").LocalPlayer
+            end)
+
+            if success and player then
+                local character = player.Character or player.CharacterAdded:Wait()
+                if character and typeof(character) == "Instance" then
+                    for _, descendant in ipairs(character:GetDescendants()) do
+                        if descendant:IsA("BasePart") or descendant:IsA("Decal") then
+                            pcall(function()
+                                descendant.LocalTransparencyModifier = 0
+                                if descendant:IsA("BasePart") then
+                                    descendant.CanCollide = true
+                                    descendant.CastShadow = true
+                                    descendant.CanQuery = true
+                                    descendant.CanTouch = true
+                                    descendant.Material = Enum.Material.Plastic
+                                    descendant.Color = descendant.Color -- giữ nguyên
+                                end
+                            end)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+local ToggleUltraSpeed = Tabs.Defense:AddToggle("ToggleUltraSpeed", {
+    Title = "🌀 ULTRA MEGA SPEED V9999",
+    Default = getgenv().Settings.ToggleUltraSpeed or false
+})
+
+ToggleUltraSpeed:OnChanged(function(Value)
+    _G.ToggleUltraSpeed = Value
+    getgenv().Settings.ToggleUltraSpeed = Value
+    SaveSetting()
+end)
+
+spawn(function()
+    while wait(0.1) do
+        if _G.ToggleUltraSpeed then
+            local player = game:GetService("Players")
+            local localPlayer = player and player.LocalPlayer
+            local character = localPlayer and (localPlayer.Character or localPlayer.CharacterAdded:Wait())
+            local humanoid = character and (character:FindFirstChildOfClass("Humanoid") or character:FindFirstChild("Humanoid"))
+            if not humanoid then
+                for _, v in pairs(character:GetChildren()) do
+                    if v:IsA("Humanoid") then
+                        humanoid = v
+                        break
+                    end
+                end
+            end
+            if humanoid and humanoid.ClassName == "Humanoid" and humanoid.WalkSpeed ~= 100 then
+                humanoid.WalkSpeed = 100
+            end
+        else
+            local player = game:GetService("Players")
+            local localPlayer = player and player.LocalPlayer
+            local character = localPlayer and (localPlayer.Character or localPlayer.CharacterAdded:Wait())
+            local humanoid = character and (character:FindFirstChildOfClass("Humanoid") or character:FindFirstChild("Humanoid"))
+            if not humanoid then
+                for _, v in pairs(character:GetChildren()) do
+                    if v:IsA("Humanoid") then
+                        humanoid = v
+                        break
+                    end
+                end
+            end
+            if humanoid and humanoid.ClassName == "Humanoid" and humanoid.WalkSpeed ~= 16 then
+                humanoid.WalkSpeed = 16
+            end
+        end
+    end
+end)
+
+local ToggleHyperSensitiveSpeed = Tabs.Defense:AddToggle("ToggleHyperSensitiveSpeed", {
+    Title = "💥 HYPER SENSITIVE SPEED 100",
+    Default = getgenv().Settings.ToggleHyperSensitiveSpeed or false
+})
+
+ToggleHyperSensitiveSpeed:OnChanged(function(Value)
+    _G.ToggleHyperSensitiveSpeed = Value
+    getgenv().Settings.ToggleHyperSensitiveSpeed = Value
+    SaveSetting()
+end)
+
+spawn(function()
+    while wait(0.001) do
+        if _G.ToggleHyperSensitiveSpeed then
+            local players = game:GetService("Players")
+            local localPlayer = players and players.LocalPlayer
+            local character = localPlayer and (localPlayer.Character or localPlayer.CharacterAdded:Wait())
+            local humanoid = character and (character:FindFirstChildOfClass("Humanoid") or character:FindFirstChild("Humanoid"))
+            if not humanoid then
+                for _, v in ipairs(character:GetChildren()) do
+                    if v:IsA("Humanoid") then
+                        humanoid = v
+                        break
+                    end
+                end
+            end
+            if humanoid and humanoid.ClassName == "Humanoid" and humanoid.WalkSpeed ~= 100 then
+                humanoid.WalkSpeed = 100
+            end
+        else
+            local players = game:GetService("Players")
+            local localPlayer = players and players.LocalPlayer
+            local character = localPlayer and (localPlayer.Character or localPlayer.CharacterAdded:Wait())
+            local humanoid = character and (character:FindFirstChildOfClass("Humanoid") or character:FindFirstChild("Humanoid"))
+            if not humanoid then
+                for _, v in ipairs(character:GetChildren()) do
+                    if v:IsA("Humanoid") then
+                        humanoid = v
+                        break
+                    end
+                end
+            end
+            if humanoid and humanoid.ClassName == "Humanoid" and humanoid.WalkSpeed ~= 16 then
+                humanoid.WalkSpeed = 16
+            end
+        end
+    end
+end)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+InterfaceManager:SetFolder("ToolHub")
+SaveManager:SetFolder("Database")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)

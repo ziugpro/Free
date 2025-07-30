@@ -258,7 +258,7 @@ local Button_ResetClickPosition = Tabs.Main:AddButton({
 
 local Toggle_ClickAutoClick = Tabs.Main:AddToggle("Toggle_ClickAutoClick", {
     Title = "Auto Click",
-Default = getgenv().Settings.Toggle_ClickAutoClick or false
+    getgenv().Settings.Toggle_ClickAutoClick or false
 })
 
 Toggle_ClickAutoClick:OnChanged(function(Value)
@@ -347,7 +347,7 @@ end)
 local Main = Tabs.Main:AddSection("Esp")
 local ToggleESPPlayerRealXtremeV2 = Tabs.Main:AddToggle("ToggleESPPlayerRealXtremeV2", {
     Title = "⚡ Ultimate Player ESP",
-Default = getgenv().Settings.ToggleESPPlayerRealXtremeV2 or false
+    getgenv().Settings.ToggleESPPlayerRealXtremeV2 or false
 })
 
 ToggleESPPlayerRealXtremeV2:OnChanged(function(Value)
@@ -575,7 +575,7 @@ spawn(function()
 end)
 local ToggleESPNPC = Tabs.Main:AddToggle("ToggleESPNPC", {
     Title = "👾 NPC ESP",
-    Default = getgenv().Settings.ToggleESPNPC or false
+    getgenv().Settings.ToggleESPNPC or false
 })
 
 ToggleESPNPC:OnChanged(function(Value)

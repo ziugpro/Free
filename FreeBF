@@ -1,36 +1,5 @@
-local PremiumKeys = {  
-    "free-key-24h-bloxfruit-script",  
-    "RPyuHRSmXa6JeUY",
-}  
-  
-local BlacklistKeys = {  
-    ["abc123"] = "Hành vi gian lận bị phát hiện",  
-    ["badkey456"] = "Vi phạm điều khoản sử dụng",  
-    ["xyz789"] = "Key đã bị thu hồi do lạm dụng"  
-}  
-  
-local function isPremiumKey(key)  
-    for _, v in ipairs(PremiumKeys) do  
-        if v == key then  
-            return true  
-        end  
-    end  
-    return false  
-end  
-  
-local function getBlacklistReason(key)  
-    return BlacklistKeys[key]  
-end  
-  
-if not ziugpro_script or getBlacklistReason(ziugpro_script) then  
-    local reason = getBlacklistReason(ziugpro_script) or "Key bị chặn"  
-    game:GetService("Players").LocalPlayer:Kick(reason)  
-    return  
-end  
-  
-if isPremiumKey(ziugpro_script) then  
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Tool Hub",
+    Title = "Aura Hub",
     Text = "Success Loading",
     Icon = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420",
     Duration = 5,
@@ -68,7 +37,7 @@ task.spawn(function()
 end)
 local v14 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();
 local v15 = v14:CreateWindow({
-    Title = "Tool Hub",
+    Title = "Aura Hub",
     SubTitle = "By Ziugpro",
     TabWidth = 130,
     Theme = "Dark",
@@ -9111,6 +9080,3 @@ local ngu = v16.Webhook:AddToggle("ngu", {
     Default = true
 });
 local Draco = v16.Draco:AddSection("Đang Cập Nhật Vui Lòng Đợi")
-else  
-    game:GetService("Players").LocalPlayer:Kick("Invalid Key")  
-end

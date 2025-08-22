@@ -1,4 +1,4 @@
-pgame.StarterGui:SetCore("SendNotification", {
+game.StarterGui:SetCore("SendNotification", {
     Title = "Aura Hub",
     Text = "Success Loading",
     Icon = "rbxthumb://type=Asset&id=131484641795167&w=420&h=420",
@@ -9108,6 +9108,7 @@ local ngu = v16.Webhook:AddToggle("ngu", {
     Default = true
 });
 local Draco = v16.Draco:AddSection("Đang Cập Nhật Vui Lòng Đợi")
+
 
 
 

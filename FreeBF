@@ -2083,7 +2083,7 @@ function BTPZ(v209)
     task.wait();
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v209;
 end
-TweenSpeed = 400;
+TweenSpeed = 340;
 function Tween(v211)
     local v212 = (v211.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude;
     local v213 = TweenSpeed;
@@ -9091,5 +9091,6 @@ local ngu = v16.Webhook:AddToggle("ngu", {
     Default = true
 });
 local Draco = v16.Draco:AddSection("Đang Cập Nhật Vui Lòng Đợi")
+
 
 

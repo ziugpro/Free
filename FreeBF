@@ -1,4 +1,4 @@
-game.StarterGui:SetCore("SendNotification", {
+pgame.StarterGui:SetCore("SendNotification", {
     Title = "Aura Hub",
     Text = "Success Loading",
     Icon = "rbxthumb://type=Asset&id=131484641795167&w=420&h=420",
@@ -2067,7 +2067,14 @@ function Tween2(v204)
         v206 = 350
     end
     local v207 = TweenInfo.new(v205 / v206, Enum.EasingStyle.Linear)
-    local v208 = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, v207, {
+
+    local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+
+    hrp.Anchored = true
+    if humanoid then humanoid.PlatformStand = true end
+
+    local v208 = game:GetService("TweenService"):Create(hrp, v207, {
         CFrame = CFrame.new(v204.Position)
     })
     v208:Play()
@@ -2076,6 +2083,9 @@ function Tween2(v204)
     end
     _G.Clip2 = true
     wait(v205 / v206)
+
+    hrp.Anchored = false
+    if humanoid then humanoid.PlatformStand = false end
     _G.Clip2 = false
 end
 
@@ -2094,13 +2104,25 @@ function Tween(v211)
         v213 = TweenSpeed
     end
     local v214 = TweenInfo.new(v212 / v213, Enum.EasingStyle.Linear)
-    local v215 = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, v214, {
+
+    local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+
+    hrp.Anchored = true
+    if humanoid then humanoid.PlatformStand = true end
+
+    local v215 = game:GetService("TweenService"):Create(hrp, v214, {
         CFrame = CFrame.new(v211.Position)
     })
     v215:Play()
     if _G.StopTween then
         v215:Cancel()
     end
+
+    wait(v212 / v213)
+
+    hrp.Anchored = false
+    if humanoid then humanoid.PlatformStand = false end
 end
 function CancelTween(v216)
     if not v216 then
@@ -9094,6 +9116,7 @@ local ngu = v16.Webhook:AddToggle("ngu", {
     Default = true
 });
 local Draco = v16.Draco:AddSection("Đang Cập Nhật Vui Lòng Đợi")
+
 
 
 

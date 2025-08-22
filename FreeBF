@@ -1,15 +1,22 @@
 game.StarterGui:SetCore("SendNotification", {
     Title = "Aura Hub",
     Text = "Success Loading",
-    Icon = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420",
+    Icon = "rbxthumb://type=Asset&id=131484641795167&w=420&h=420",
     Duration = 5,
     Callback = function()
     end
 })
-repeat task.wait() until game:IsLoaded()
-
-getgenv().Image = "rbxthumb://type=Asset&id=76608011467652&w=420&h=420"
-getgenv().ToggleUI = "RightControl"
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Aura Hub",
+    Text = "Keybind: RightShift",
+    Icon = "rbxthumb://type=Asset&id=131484641795167&w=420&h=420",
+    Duration = 5,
+    Callback = function()
+    end
+})
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Image = "rbxthumb://type=Asset&id=106019376492019&w=420&h=420"
+getgenv().ToggleUI = "RightShift"
 
 task.spawn(function()
     if not getgenv().LoadedMobileUI then
@@ -23,12 +30,12 @@ task.spawn(function()
         ImageButton.Parent = OpenUI
         ImageButton.BackgroundColor3 = Color3.fromRGB(105, 105, 105)
         ImageButton.BackgroundTransparency = 0.8
-        ImageButton.Position = UDim2.new(0, 5, 0, 5)
-        ImageButton.Size = UDim2.new(0, 55, 0, 55)
+        ImageButton.Position = UDim2.new(0, 20, 0, 25)
+        ImageButton.Size = UDim2.new(0, 50, 0, 50)
         ImageButton.Image = getgenv().Image
-        ImageButton.Draggable = false
+        ImageButton.Draggable = true
         ImageButton.Transparency = 1
-        UICorner.CornerRadius = UDim.new(100)
+        UICorner.CornerRadius = UDim.new(0,13)
         UICorner.Parent = ImageButton
         ImageButton.MouseButton1Click:Connect(function()
             game:GetService("VirtualInputManager"):SendKeyEvent(true, getgenv().ToggleUI, false, game)
@@ -43,7 +50,7 @@ local v15 = v14:CreateWindow({
     Theme = "Dark",
     Acrylic = false,
     Size = UDim2.fromOffset(505, 340),
-    MinimizeKey = Enum.KeyCode.RightControl
+    MinimizeKey = Enum.KeyCode.RightShift
 });
 local v16 = {
     Home = v15:AddTab({
@@ -9080,3 +9087,4 @@ local ngu = v16.Webhook:AddToggle("ngu", {
     Default = true
 });
 local Draco = v16.Draco:AddSection("Đang Cập Nhật Vui Lòng Đợi")
+
